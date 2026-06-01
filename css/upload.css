@@ -1,0 +1,80 @@
+.upload-page {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #0e0f13;
+  color: white;
+}
+
+.upload-card {
+  width: 100%;
+  max-width: 700px;
+  background: #161823;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.upload-card h2 {
+  margin-bottom: 10px;
+}
+
+.upload-card p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+/* DROPZONE */
+.dropzone {
+  border: 2px dashed #2de2e6;
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dropzone:hover {
+  background: rgba(45, 226, 230, 0.05);
+}
+
+/* FORM */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1e2230;
+  color: white;
+  outline: none;
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  margin-bottom: 15px;
+  grid-column: span 2;
+}
+
+/* BUTTON */
+.upload-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2de2e6;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: #1bbbc0;
+}
