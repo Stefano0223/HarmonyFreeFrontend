@@ -1,9 +1,10 @@
 import { apiFetch } from "../services/apiClient.js";
+import { CORE_BASE_URL } from "../services/config.js";
 
 export async function getMyPlaylists() {
 
     const response = await apiFetch(
-        "/api/v1/playlists/me"
+        `${CORE_BASE_URL}/api/v1/playlists/me`
     );
 
     return response.json();
@@ -12,7 +13,7 @@ export async function getMyPlaylists() {
 export async function createPlaylist(request) {
 
     const response = await apiFetch(
-        "/api/v1/playlists",
+        `${CORE_BASE_URL}/api/v1/playlists`,
         {
             method: "POST",
             body: JSON.stringify(request)
@@ -25,7 +26,7 @@ export async function createPlaylist(request) {
 export async function deletePlaylist(id) {
 
     await apiFetch(
-        `/api/v1/playlists/${id}`,
+        `${CORE_BASE_URL}/api/v1/playlists/${id}`,
         {
             method: "DELETE"
         }

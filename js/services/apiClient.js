@@ -1,25 +1,20 @@
 
 /*
-* Client centralizzato per tutte le chiamate al Core.
+* Client centralizzato per tutte le chiamate AL CORE.
 */
 
-import { CORE_API } from "./config.js";
+export async function apiFetch(url, options = {}) {
 
-export async function apiFetch(path, options = {}) {
+    const token = localStorage.getItem("jwt");
 
-    const token = localStorage.getItem("token");
-
-    const response = await fetch(
-        `${CORE_API}${path}`,
-        {
-            ...options,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-                ...(options.headers || {})
-            }
+    const response = await fetch(url, {
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...(token && { Authorization: `Bearer ${token}` }),
+            ...options.headers
         }
-    );
+    });
 
     if (!response.ok) {
         throw new Error(await response.text());

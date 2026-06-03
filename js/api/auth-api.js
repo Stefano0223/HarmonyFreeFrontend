@@ -1,29 +1,29 @@
-import { AUTH_API } from "../services/config.js";
+import { AUTH_BASE_URL } from "../services/config.js";
 
-export async function register(data) {
+export async function register(userData) {
+
+    console.log(AUTH_BASE_URL);
 
     const response = await fetch(
-        `${AUTH_API}/api/v1/auth/register`,
+        `${AUTH_BASE_URL}/api/v1/auth/register`,
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(userData)
         }
     );
 
     if (!response.ok) {
-        throw new Error(await response.text());
+        throw new Error("Registration failed");
     }
-
-    return response.text();
 }
 
 export async function login(email, password) {
 
     const response = await fetch(
-        `${AUTH_API}/api/v1/auth/login`,
+        `${AUTH_BASE_URL}/api/v1/auth/login`,
         {
             method: "POST",
             headers: {
@@ -43,11 +43,29 @@ export async function login(email, password) {
     const data = await response.json();
 
     // Salva il JWT
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("jwt", data.token);
 
-    return data;
+    return data.token;
+}
+
+export async function getMe() {
+    console.log(AUTH_BASE_URL);
+    const response = await fetch(
+        `${AUTH_BASE_URL}/api/v1/users/me`,
+        {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+            }
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Unable to load current user");
+    }
+
+    return await response.json();
 }
 
 export function logout() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
 }
