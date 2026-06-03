@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HarmonyFree - Browse Music</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav>
+                <ul class="d-flex gap-4 list-unstyled mt-3">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="browse.html" class="active">Browse</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Browse Section -->
+    <section class="container mt-5">
+
+        <div class="text-center mb-5">
+            <h1>Browse Music</h1>
+            <p>Search and discover Creative Commons tracks.</p>
+        </div>
+
+        <!-- Search -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <input
+                        type="text"
+                        id="search-input"
+                        class="form-control"
+                        placeholder="Search tracks...">
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="row mb-4">
+
+            <div class="col-md-4">
+                <input
+                        type="text"
+                        id="title-filter"
+                        class="form-control"
+                        placeholder="Title">
+            </div>
+
+            <div class="col-md-4">
+                <input
+                        type="text"
+                        id="artist-filter"
+                        class="form-control"
+                        placeholder="Artist">
+            </div>
+
+            <div class="col-md-4">
+                <select id="genre-filter" class="form-control">
+                    <option value="">All Genres</option>
+                    <option value="ROCK">Rock</option>
+                    <option value="POP">Pop</option>
+                    <option value="JAZZ">Jazz</option>
+                    <option value="CLASSICAL">Classical</option>
+                    <option value="ELECTRONIC">Electronic</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- Search Button -->
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <button
+                        id="search-btn"
+                        class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="row">
+            <div class="col-md-12">
+
+                <h3>Results</h3>
+
+                <div id="tracks-container">
+
+                    <!-- Example Card -->
+                    <div class="card mb-3 track-card">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Track Title
+                            </h5>
+
+                            <p class="card-text">
+                                Artist Name
+                            </p>
+
+                            <p class="card-text">
+                                Genre: Rock
+                            </p>
+
+                            <!-- Play -->
+                            <button
+                                    class="btn btn-success play-btn"
+                                    data-track-id="1">
+                                Play
+                            </button>
+
+                            <!-- Favorites -->
+                            <button
+                                    class="btn btn-warning favorite-btn"
+                                    data-track-id="1">
+                                Add to Favorites
+                            </button>
+
+                            <!-- Playlist -->
+                            <button
+                                    class="btn btn-info playlist-btn"
+                                    data-track-id="1">
+                                Add to Playlist
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Audio Player -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+
+                <h3>Player</h3>
+
+                <audio
+                        id="audio-player"
+                        controls
+                        style="width: 100%;">
+                    Your browser does not support audio playback.
+                </audio>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Backend integration -->
+    <script src="js/api/track-api.js"></script>
+    <script src="js/api/favorite-api.js"></script>
+    <script src="js/api/playlist-api.js"></script>
+
+    <!-- Page logic -->
+    <script src="js/pages/browse.js"></script>
+
+</body>
+
+</html>
