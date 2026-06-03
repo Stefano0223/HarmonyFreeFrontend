@@ -1,4 +1,4 @@
-import { AUTH_API } from "./config.js";
+import { AUTH_API } from "../services/config.js";
 
 export async function register(data) {
 

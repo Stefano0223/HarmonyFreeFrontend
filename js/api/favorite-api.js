@@ -1,4 +1,4 @@
-import { apiFetch } from "./apiClient.js";
+import { apiFetch } from "../services/apiClient.js";
 
 export async function getFavorites() {
 
