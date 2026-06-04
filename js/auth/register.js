@@ -1,5 +1,6 @@
 import { register, login, getMe } from "../api/auth-api.js";
 import { createUser } from "../api/user-api.js";
+import { getToken } from "../utils/auth-utils.js";
 
 const registerForm = document.getElementById("register-form");
 
@@ -38,7 +39,7 @@ if (registerForm) {
             localStorage.setItem("jwt", token);
 
             console.log("Token salvato:", token);
-            console.log("Token da localStorage:", localStorage.getItem("jwt"));
+            console.log("Token da localStorage:", getToken());
 
             // 3. Recupero dati utente Auth
             const authUser = await getMe();

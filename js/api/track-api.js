@@ -14,14 +14,14 @@ export async function getAllTracks() {
     return await response.json();
 }
 
-export async function getTrackById(trackId) {
+export async function getTrackById(id) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/tracks/${trackId}`
+        `${CORE_BASE_URL}/api/v1/tracks/${id}`
     );
 
     if (!response.ok) {
-        throw new Error("Track not found");
+        throw new Error("Unable to load track");
     }
 
     return await response.json();
@@ -30,6 +30,10 @@ export async function getTrackById(trackId) {
 export async function searchTracks(filters = {}) {
 
     const params = new URLSearchParams();
+
+    if (filters.query) {
+        params.append("query", filters.query);
+    }
 
     if (filters.title) {
         params.append("title", filters.title);
@@ -44,7 +48,7 @@ export async function searchTracks(filters = {}) {
     }
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/tracks/search?${params.toString()}`
+        `${CORE_BASE_URL}/api/v1/tracks?${params.toString()}`
     );
 
     if (!response.ok) {
