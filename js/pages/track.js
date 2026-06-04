@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             track.album ?? "-";
 
         document.getElementById("track-genres").textContent =
-            (track.genres || []).join(", ");
+            track.genres && track.genres.length > 0
+                ? track.genres.join(", ")
+                : "not available";
 
         document.getElementById("track-duration").textContent =
             formatDuration(track.duration);
@@ -36,6 +38,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         document.getElementById("audio-player").src =
             track.audioUrl;
+
+        const downloadBtn = document.getElementById("download-btn");
+
+        if (track.downloadable) {
+
+            downloadBtn.addEventListener("click", () => {
+
+                window.open(
+                    track.downloadUrl,
+                    "_blank"
+                );
+
+            });
+
+        } else {
+
+            downloadBtn.style.display = "none";
+
+        }
 
     } catch (error) {
 
