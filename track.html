@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Details</title>
+</head>
+<body>
+    
+    <div class="container mt-5">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <img
+                id="track-cover"
+                class="img-fluid rounded"
+                alt="Cover">
+
+        </div>
+
+        <div class="col-md-8">
+
+            <h1 id="track-title"></h1>
+
+            <p>
+                <strong>Artist:</strong>
+                <span id="track-artist"></span>
+            </p>
+
+            <p>
+                <strong>Album:</strong>
+                <span id="track-album"></span>
+            </p>
+
+            <p>
+                <strong>Genres:</strong>
+                <span id="track-genres"></span>
+            </p>
+
+            <p>
+                <strong>Duration:</strong>
+                <span id="track-duration"></span>
+            </p>
+
+            <audio
+                id="audio-player"
+                controls
+                style="width:100%;">
+            </audio>
+
+        </div>
+
+    </div>
+
+    </div>
+
+    <script type="module" src="js/pages/track.js"></script>
+
+</body>
+</html>
