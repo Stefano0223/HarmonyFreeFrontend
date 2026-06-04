@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/auth.css" type="text/css">
 </head>
 
 <body>
@@ -68,110 +69,54 @@
         </div>
     </header>
     <!-- Header Section End -->
+<div class="auth-container">
 
-   <section class="login-section spad">
-    <div class="container">
-        <div class="row">
+  <div class="auth-box">
 
-            <!-- Login -->
-             
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <h3>Login</h3>
+    <!-- REGISTER -->
+    <div class="form-box register-box">
+      <h2>Register</h2>
 
-                    <form id="login-form" action="#" method="POST">
-                        <div class="mb-3">
-                            <input id="login-email" type="email" class="form-control"
-                                   placeholder="Email" required>
-                        </div>
+      <input type="text" placeholder="Username">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
 
-                        <div class="mb-3">
-                            <input id="login-password" type="password" class="form-control"
-                                   placeholder="Password" required>
-                        </div>
+      <button>Sign Up</button>
 
-                        <button type="submit"
-                                class="btn btn-primary w-100">
-                            Login
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Register -->
-        
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <h3>Create Account</h3>
-
-                    <form id="register-form" action="#" method="POST">
-
-                        <div class="mb-3">
-                            <input id="register-email"
-                                type="email"
-                                class="form-control"
-                                placeholder="Email"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <input id="register-username"
-                                type="text"
-                                class="form-control"
-                                placeholder="Username"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <input id="register-first-name"
-                                type="text"
-                                class="form-control"
-                                placeholder="First Name"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <input id="register-last-name"
-                                type="text"
-                                class="form-control"
-                                placeholder="Last Name"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <input id="register-profile-image-url"
-                                type="url"
-                                class="form-control"
-                                placeholder="Profile Image URL">
-                        </div>
-
-                        <div class="mb-3">
-                            <input id="register-password"
-                                type="password"
-                                class="form-control"
-                                placeholder="Password"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <input id="register-confirm-password"
-                                type="password"
-                                class="form-control"
-                                placeholder="Confirm Password"
-                                required>
-                        </div>
-
-                        <button type="submit"
-                                class="btn btn-success w-100">
-                            Register
-                        </button>
-
-                    </form>
-                </div>
-            </div>
-
-        </div>
+      <p>
+        Already have an account?
+        <a href="#" id="showLogin">Login</a>
+      </p>
     </div>
+
+    <!-- LOGIN -->
+    <div class="form-box login-box">
+      <h2>Login</h2>
+
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+
+      <button>Login</button>
+
+      <p>
+        Don't have an account?
+        <a href="#" id="showRegister">Register</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+  <!-- Footer Section Begin -->
+    <footer class="footer spad set-bg" data-setbg="img/footer-bg.png">
+        <div class="container">
+            <div class="row">
+                
+              
+                        </form>
+                    </div>
+                </div>
+            </div>
+
    
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -183,6 +128,7 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
 
     <!-- Music Plugin -->
     <script src="js/jquery.jplayer.min.js"></script>
