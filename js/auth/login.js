@@ -19,8 +19,6 @@ if (loginForm) {
             // Login -> riceve JWT
             const token = await login(email, password);
 
-            localStorage.setItem("jwt", token);
-
             // Recupera dati utente
             const user = await getMe();
 

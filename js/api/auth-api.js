@@ -45,6 +45,11 @@ export async function login(email, password) {
     // Salva il JWT
     localStorage.setItem("jwt", data.token);
 
+    localStorage.setItem(
+        "jwtExpiration",
+        Date.now() + 30000
+    );
+
     return data.token;
 }
 
@@ -64,8 +69,4 @@ export async function getMe() {
     }
 
     return await response.json();
-}
-
-export function logout() {
-    localStorage.removeItem("jwt");
 }

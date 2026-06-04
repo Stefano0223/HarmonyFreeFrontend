@@ -1,4 +1,6 @@
 import { getAllTracks, searchTracks } from "../api/track-api.js";
+import { isLoggedIn } from "../utils/auth-utils.js";
+import { addFavorite } from "../api/favorite-api.js";
 
 //al caricamento della pagina, recupera e mostra tutte le tracce
 document.addEventListener("DOMContentLoaded", async () => {
@@ -89,7 +91,9 @@ function renderTracks(tracks) {
 
                             <p class="card-text">
                                 <strong>Genres:</strong>
-                                ${(track.genres || []).join(", ")}
+                                ${track.genres && track.genres.length > 0
+                                    ? track.genres.join(", ")
+                                    : "not available"}
                             </p>
 
                             <p class="card-text">
@@ -103,17 +107,27 @@ function renderTracks(tracks) {
                                 Play
                             </button>
 
-                            <button
-                                class="btn btn-warning favorite-btn"
-                                data-track-id="${track.id}">
-                                Add to Favorites
-                            </button>
+                            ${track.downloadable ? `
+                                <button
+                                    class="btn btn-secondary download-btn"
+                                    data-download-url="${track.downloadUrl}">
+                                    Download
+                                </button>
+                            ` : ""}
 
-                            <button
-                                class="btn btn-info playlist-btn"
-                                data-track-id="${track.id}">
-                                Add to Playlist
-                            </button>
+                            ${isLoggedIn() ? `
+                                <button
+                                    class="btn btn-warning favorite-btn"
+                                    data-track-id="${track.id}">
+                                    Add to Favorites
+                                </button>
+
+                                <button
+                                    class="btn btn-info playlist-btn"
+                                    data-track-id="${track.id}">
+                                    Add to Playlist
+                                </button>
+                            ` : ""}
 
                         </div>
 
@@ -127,6 +141,8 @@ function renderTracks(tracks) {
 
     bindTrackCards();
     bindPlayButtons();
+    bindDownloadButtons();
+    bindFavoriteButtons();
 }
 
 //funzione per formattare la durata da secondi a mm:ss
@@ -183,4 +199,55 @@ function bindTrackCards() {
 
         });
 
+}
+
+//funzione per gestire il click sui pulsanti Download e aprire il link di download in una nuova finestra
+function bindDownloadButtons() {
+
+    document
+        .querySelectorAll(".download-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", (event) => {
+
+                event.stopPropagation();
+
+                const downloadUrl =
+                    button.dataset.downloadUrl;
+
+                window.open(downloadUrl, "_blank");
+
+            });
+
+        });
+}
+
+//funzione per gestire il click sui pulsanti Add to Favorites e aggiungere la traccia ai preferiti dell'utente
+function bindFavoriteButtons() {
+
+    document
+        .querySelectorAll(".favorite-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", async (event) => {
+
+                event.stopPropagation();
+
+                try {
+
+                    await addFavorite(
+                        button.dataset.trackId
+                    );
+
+                    alert("Added to favorites");
+
+                } catch (error) {
+
+                    console.error(error);
+
+                }
+
+            });
+
+        });
 }

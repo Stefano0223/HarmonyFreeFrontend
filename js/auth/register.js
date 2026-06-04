@@ -36,8 +36,6 @@ if (registerForm) {
             // 2. Login automatico
             const token = await login(email, password);
 
-            localStorage.setItem("jwt", token);
-
             console.log("Token salvato:", token);
             console.log("Token da localStorage:", getToken());
 
