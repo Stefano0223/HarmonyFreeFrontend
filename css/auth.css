@@ -1,20 +1,29 @@
 .auth-container {
-    width: 100%;
-    height: 100vh;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
 }
 
 .auth-box {
-    width: 380px;
-    background: #161823;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    padding: 40px;
+  width: 380px;
+  background: #161823;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  padding: 40px;
 }
+
+.header {
+  position: relative;
+  z-index: 1000;
+}
+
 /* form */
 .form-box {
     display: none;

@@ -2,29 +2,40 @@ import { register, login, getMe } from "../api/auth-api.js";
 import { createUser } from "../api/user-api.js";
 import { getToken } from "../utils/auth-utils.js";
 
-const registerForm = document.getElementById("register-form");
+document
+    .getElementById("register-button")
+    .addEventListener("click", async () => {
 
-if (registerForm) {
+        const email =
+            document.getElementById("register-email").value;
 
-    registerForm.addEventListener("submit", async (event) => {
+        const password =
+            document.getElementById("register-password").value;
 
-        event.preventDefault();
+        const confirmPassword =
+            document.getElementById("register-confirm-password").value;
 
-        const email = document.getElementById("register-email").value.trim();
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
 
-        const username = document.getElementById("register-username").value.trim();
+        const username =
+            document.getElementById("register-username").value;
 
-        const firstName = document.getElementById("register-first-name").value.trim();
+        const firstName =
+            document.getElementById("register-first-name").value;
 
-        const lastName = document.getElementById("register-last-name").value.trim();
+        const lastName =
+            document.getElementById("register-last-name").value;
 
-        const profileImageUrl = document.getElementById("register-profile-image-url").value.trim();
+        const profileImageUrl =
+            document.getElementById("register-profile-image").value;
 
-        const password = document.getElementById("register-password").value;
-
-        const confirmPassword = document.getElementById("register-confirm-password").value;
-
+        // chiamata API register
         try {
+
+            console.log(email, password, confirmPassword);
 
             // 1. Registrazione su Auth
             await register({
@@ -47,6 +58,8 @@ if (registerForm) {
                 JSON.stringify(authUser)
             );
 
+            console.log(username, firstName, lastName, profileImageUrl);
+
             // 4. Creazione utente nel Core
             await createUser({
                 username,
@@ -68,7 +81,4 @@ if (registerForm) {
             );
 
         }
-
-    });
-
-}
+});

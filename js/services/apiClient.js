@@ -25,7 +25,11 @@ export async function apiFetch(url, options = {}) {
     }
 
     if (!response.ok) {
-        throw new Error(await response.text());
+        
+        const errorBody = await response.json();
+
+        throw new Error(errorBody.message || "Unexpected error");
+
     }
 
     return response;

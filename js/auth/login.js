@@ -1,19 +1,18 @@
 import { login, getMe } from "../api/auth-api.js";
 
-const loginForm = document.getElementById("login-form");
-
-if (loginForm) {
-
-    loginForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
+document
+    .getElementById("login-button")
+    .addEventListener("click", async () => {
 
         const email =
-            document.getElementById("login-email").value.trim();
+            document.getElementById("login-email").value;
 
         const password =
             document.getElementById("login-password").value;
 
+        console.log(email, password);
+
+        // chiamata API login
         try {
 
             // Login -> riceve JWT
@@ -37,7 +36,4 @@ if (loginForm) {
             alert("Invalid email or password");
 
         }
-
-    });
-
-}
+});

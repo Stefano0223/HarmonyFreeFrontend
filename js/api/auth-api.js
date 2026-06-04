@@ -47,7 +47,7 @@ export async function login(email, password) {
 
     localStorage.setItem(
         "jwtExpiration",
-        Date.now() + 30000
+        Date.now() + 3600000    //il token scade dopo 1 ora
     );
 
     return data.token;
