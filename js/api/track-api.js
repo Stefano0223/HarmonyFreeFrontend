@@ -43,6 +43,10 @@ export async function searchTracks(filters = {}) {
         params.append("artist", filters.artist);
     }
 
+    if (filters.album) {
+        params.append("album", filters.album);
+    }
+
     if (filters.genre) {
         params.append("genre", filters.genre);
     }
