@@ -1,28 +1,42 @@
 import { apiFetch } from "../services/apiClient.js";
 import { CORE_BASE_URL } from "../services/config.js";
 
-export async function addFavorite(trackId) {
-
-    const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/favorites/${trackId}`,
-        {
-            method: "POST"
-        }
-    );
-
-    if (!response.ok) {
-        throw new Error("Unable to add favorite");
-    }
-}
+const API_URL = `${CORE_BASE_URL}/api/v1/users/me/favorites`;
 
 export async function getFavorites() {
 
-    const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/favorites`
-    );
+    const token = localStorage.getItem("jwt");
+
+    const response = await fetch(API_URL, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 
     if (!response.ok) {
-        throw new Error("Unable to load favorites");
+        throw new Error("Cannot load favorites");
+    }
+
+    return await response.json();
+}
+
+export async function addFavorite(jamendoTrackId) {
+
+    const token = localStorage.getItem("jwt");
+
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            jamendoTrackId
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error("Cannot add favorite");
     }
 
     return await response.json();
@@ -30,14 +44,19 @@ export async function getFavorites() {
 
 export async function removeFavorite(trackId) {
 
-    const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/favorites/${trackId}`,
+    const token = localStorage.getItem("jwt");
+
+    const response = await fetch(
+        `${API_URL}/${trackId}`,
         {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         }
     );
 
     if (!response.ok) {
-        throw new Error("Unable to remove favorite");
+        throw new Error("Cannot remove favorite");
     }
 }

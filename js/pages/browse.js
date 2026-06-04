@@ -1,4 +1,5 @@
 import { getAllTracks, searchTracks } from "../api/track-api.js";
+import { getMyPlaylists, addTrackToPlaylist } from "../api/playlist-api.js";
 import { isLoggedIn } from "../utils/auth-utils.js";
 import { addFavorite } from "../api/favorite-api.js";
 
@@ -143,6 +144,7 @@ function renderTracks(tracks) {
     bindPlayButtons();
     bindDownloadButtons();
     bindFavoriteButtons();
+    bindPlaylistButtons();
 }
 
 //funzione per formattare la durata da secondi a mm:ss
@@ -231,6 +233,7 @@ function bindFavoriteButtons() {
 
             button.addEventListener("click", async (event) => {
 
+                //evita che il click sul pulsante si propaghi alla card e apra la pagina di dettaglio della traccia
                 event.stopPropagation();
 
                 try {
@@ -243,11 +246,92 @@ function bindFavoriteButtons() {
 
                 } catch (error) {
 
-                    console.error(error);
+                    alert(error.message);
 
                 }
 
             });
 
         });
+}
+
+function bindPlaylistButtons() {
+
+    document
+        .querySelectorAll(".playlist-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                async (event) => {
+
+                    //evita che il click sul pulsante si propaghi alla card e apra la pagina di dettaglio della traccia
+                    event.stopPropagation();
+
+                    const trackId =
+                        button.dataset.trackId;
+
+                    console.log("Adding track to playlist, trackId =", trackId);
+
+                    await addTrackToPlaylistHandler(
+                        trackId
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+async function addTrackToPlaylistHandler(
+    trackId
+) {
+
+    try {
+
+        const playlists =
+            await getMyPlaylists();
+
+        if (playlists.length === 0) {
+
+            alert(
+                "Create a playlist first"
+            );
+
+            return;
+        }
+
+        const message =
+            playlists
+                .map(
+                    p =>
+                        `${p.id} - ${p.title}`
+                )
+                .join("\n");
+
+        const playlistId =
+            prompt(
+                `Choose playlist (specify the id):\n\n${message}`
+            );
+
+        if (!playlistId) {
+            return;
+        }
+
+        await addTrackToPlaylist(
+            playlistId,
+            trackId
+        );
+
+        alert(
+            "Track added to playlist"
+        );
+
+    } catch (error) {
+
+        alert(error.message);
+
+    }
+
 }

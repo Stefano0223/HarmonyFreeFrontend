@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="DJoz Template">
     <meta name="keywords" content="DJoz, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Favorites</title>
+    <title>Track Details</title>
    
     <link rel="icon"  href="img/favicon-32x32.png">
     <!-- Google Font -->
@@ -24,32 +23,33 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-
 <body>
-
+    
     <div class="container mt-5">
 
-        <h1>My Favorites</h1>
+        <h1 id="playlist-title"></h1>
 
-        <div id="favorites-container">
+        <p id="playlist-description"></p>
 
-            <!-- Qui verranno inseriti dinamicamente i brani preferiti dell'utente -->
+        <hr>
+
+        <h3>Tracks</h3>
+
+        <div id="playlist-tracks-container">
+
+            <!-- Qui verranno inseriti dinamicamente i brani della playlist -->
 
         </div>
 
+        <audio
+            id="audio-player"
+            controls
+            style="width:100%;">
+        </audio>
+
     </div>
 
-    <audio
-        id="audio-player"
-        controls
-        style="width: 100%;">
-    </audio>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <script type="module" src="js/pages/favorites.js"></script>
+    <script type="module" src="js/pages/playlist.js"></script>
 
 </body>
-
 </html>
