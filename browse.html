@@ -105,7 +105,7 @@
         <!-- Filters -->
         <div class="row mb-4">
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <input
                         type="text"
                         id="title-filter"
@@ -113,7 +113,7 @@
                         placeholder="Title">
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <input
                         type="text"
                         id="artist-filter"
@@ -121,7 +121,15 @@
                         placeholder="Artist">
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <input
+                        type="text"
+                        id="album-filter"
+                        class="form-control"
+                        placeholder="Album">
+            </div>
+
+            <div class="col-md-3">
                 <input
                         type="text"
                         id="genre-filter"
@@ -150,47 +158,7 @@
 
                 <div id="tracks-container">
 
-                    <!-- Example Card -->
-                    <div class="card mb-3 track-card">
-
-                        <div class="card-body">
-
-                            <h5 class="card-title">
-                                Track Title
-                            </h5>
-
-                            <p class="card-text">
-                                Artist Name
-                            </p>
-
-                            <p class="card-text">
-                                Genre: Rock
-                            </p>
-
-                            <!-- Play -->
-                            <button
-                                    class="btn btn-success play-btn"
-                                    data-track-id="1">
-                                Play
-                            </button>
-
-                            <!-- Favorites -->
-                            <button
-                                    class="btn btn-warning favorite-btn"
-                                    data-track-id="1">
-                                Add to Favorites
-                            </button>
-
-                            <!-- Playlist -->
-                            <button
-                                    class="btn btn-info playlist-btn"
-                                    data-track-id="1">
-                                Add to Playlist
-                            </button>
-
-                        </div>
-
-                    </div>
+                    <!-- qua compariranno i risultati della ricerca -->
 
                 </div>
 
@@ -233,16 +201,8 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Backend integration -->
-    <script src="js/api/track-api.js"></script>
-    <script src="js/api/favorite-api.js"></script>
-    <script src="js/api/playlist-api.js"></script>
-
-    <!-- Page logic -->
-    <script src="js/pages/browse.js"></script>
-    <!-- Music Plugin -->
-    <script src="js/jquery.jplayer.min.js"></script>
-    <script src="js/jplayerInit.js"></script>
+    <script type="module" src="js/pages/browse.js"></script>
+    
 </body>
 
 </html>
