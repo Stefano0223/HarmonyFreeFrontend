@@ -165,6 +165,15 @@ ol {
 
 /* buttons */
 
+/*per il pulsante di chiusura delle modali*/
+.close {
+    color: #ff4d4d;
+}
+
+.close:hover {
+    color: red;
+}
+
 .primary-btn {
 	display: inline-block;
 	font-size: 15px;
