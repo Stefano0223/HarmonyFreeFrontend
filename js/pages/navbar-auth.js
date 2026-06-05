@@ -56,4 +56,6 @@ async function loadNavbarUser() {
 
     profileLink.style.display =
         "inline-block";
+
+    profileLink.href = "profile.html";
 }

@@ -48,28 +48,63 @@ function renderPlaylist(playlist) {
 
     playlist.tracks.forEach(track => {
 
-        console.log(track.id);
+        console.log(track);
 
         container.innerHTML += `
             <div class="card mb-3">
 
-                <div class="card-body">
+                <div class="row g-0">
 
-                    <h5>${track.title}</h5>
+                    <div class="col-md-3">
 
-                    <p>${track.artist}</p>
+                        <img
+                            src="${track.coverImageUrl}"
+                            class="img-fluid rounded-start">
 
-                    <button
-                        class="btn btn-success play-btn"
-                        data-audio-url="${track.audioUrl}">
-                        Play
-                    </button>
+                    </div>
 
-                    <button
-                        class="btn btn-danger remove-track-btn"
-                        data-track-id="${track.id}">
-                        Remove
-                    </button>
+                    <div class="col-md-9">
+
+                        <div class="card-body">
+
+                            <h5>${track.title}</h5>
+
+                            <p>${track.artist}</p>
+
+                            <p>${track.album}</p>
+
+                            <p>
+                                ${
+                                    track.genres?.length
+                                    ? track.genres.join(", ")
+                                    : "Genres: not available"
+                                }
+                            </p>
+
+                            <button
+                                class="btn btn-success play-track-btn"
+                                data-track-id="${track.id}"
+                                data-audio-url="${track.audioUrl}">
+                                Play
+                            </button>
+
+                            <button
+                                class="btn btn-danger remove-playlist-btn"
+                                data-track-id="${track.id}">
+                                Remove
+                            </button>
+
+                            ${track.downloadable ? `
+                                <button
+                                    class="btn btn-secondary download-btn"
+                                    data-download-url="${track.downloadUrl}">
+                                    Download
+                                </button>
+                            ` : ""}
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -79,30 +114,31 @@ function renderPlaylist(playlist) {
 
     bindPlayButtons();
     bindRemoveButtons();
+    bindDownloadButtons();
 
 }
 
 function bindPlayButtons() {
 
+    const player =
+        document.getElementById("audio-player");
+
     document
-        .querySelectorAll(".play-btn")
+        .querySelectorAll(".play-track-btn")
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                const audioUrl =
-                    button.dataset.audioUrl;
+                    const audioUrl =
+                        button.dataset.audioUrl;
 
-                const player =
-                    document.getElementById(
-                        "audio-player"
-                    );
+                    player.src = audioUrl;
+                    player.play();
 
-                player.src = audioUrl;
-
-                player.play();
-
-            });
+                }
+            );
 
         });
 
@@ -111,7 +147,9 @@ function bindPlayButtons() {
 function bindRemoveButtons() {
 
     document
-        .querySelectorAll(".remove-track-btn")
+        .querySelectorAll(
+            ".remove-playlist-btn"
+        )
         .forEach(button => {
 
             button.addEventListener(
@@ -121,33 +159,34 @@ function bindRemoveButtons() {
                     const trackId =
                         button.dataset.trackId;
 
-                    const confirmed =
-                        confirm(
-                            "Remove track from playlist?"
-                        );
+                    await removeTrackFromPlaylist(
+                        playlistId,
+                        trackId
+                    );
 
-                    if (!confirmed) {
-                        return;
-                    }
-
-                    try {
-
-                        await removeTrackFromPlaylist(
-                            playlistId,
-                            trackId
-                        );
-
-                        await loadPlaylist();
-
-                    } catch (error) {
-
-                        console.error(error);
-
-                    }
-
+                    await loadPlaylist();
                 }
             );
+        });
+}
+
+//funzione per gestire il click sui pulsanti Download e aprire il link di download in una nuova finestra
+function bindDownloadButtons() {
+
+    document
+        .querySelectorAll(".download-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", (event) => {
+
+                event.stopPropagation();
+
+                const downloadUrl =
+                    button.dataset.downloadUrl;
+
+                window.open(downloadUrl, "_blank");
+
+            });
 
         });
-
 }

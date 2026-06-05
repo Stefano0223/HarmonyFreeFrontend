@@ -58,6 +58,8 @@ function renderTracks(tracks) {
 
     tracks.forEach(track => {
 
+        console.log(track);
+
         container.innerHTML += `
             <div class="card mb-3 track-card" data-track-id="${track.id}">
 
