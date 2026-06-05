@@ -53,6 +53,8 @@ function renderFavorites(tracks) {
 
     tracks.forEach(track => {
 
+        console.log(track);
+
         container.innerHTML += `
             <div class="card mb-3">
 
@@ -74,6 +76,8 @@ function renderFavorites(tracks) {
 
                             <p>${track.artist}</p>
 
+                            <p>${track.album}</p>
+
                             <p>
                                 ${
                                     track.genres?.length
@@ -83,17 +87,25 @@ function renderFavorites(tracks) {
                             </p>
 
                             <button
-                                class="btn btn-danger remove-favorite-btn"
-                                data-track-id="${track.id}">
-                                Remove
-                            </button>
-
-                            <button
                                 class="btn btn-success play-track-btn"
                                 data-track-id="${track.id}"
                                 data-audio-url="${track.audioUrl}">
                                 Play
                             </button>
+
+                            <button
+                                class="btn btn-danger remove-favorite-btn"
+                                data-track-id="${track.id}">
+                                Remove
+                            </button>
+
+                            ${track.downloadable ? `
+                                <button
+                                    class="btn btn-secondary download-btn"
+                                    data-download-url="${track.downloadUrl}">
+                                    Download
+                                </button>
+                            ` : ""}
 
                         </div>
 
@@ -107,6 +119,7 @@ function renderFavorites(tracks) {
 
     bindRemoveButtons();
     bindPlayButtons();
+    bindDownloadButtons();
 }
 
 function bindRemoveButtons() {
@@ -158,4 +171,25 @@ function bindPlayButtons() {
 
         });
 
+}
+
+//funzione per gestire il click sui pulsanti Download e aprire il link di download in una nuova finestra
+function bindDownloadButtons() {
+
+    document
+        .querySelectorAll(".download-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", (event) => {
+
+                event.stopPropagation();
+
+                const downloadUrl =
+                    button.dataset.downloadUrl;
+
+                window.open(downloadUrl, "_blank");
+
+            });
+
+        });
 }
