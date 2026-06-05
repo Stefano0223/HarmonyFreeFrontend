@@ -146,7 +146,6 @@ function renderTracks(tracks) {
     bindPlayButtons();
     bindDownloadButtons();
     bindFavoriteButtons();
-    bindPlaylistButtons();
 }
 
 //funzione per formattare la durata da secondi a mm:ss
@@ -191,18 +190,19 @@ function bindTrackCards() {
         .querySelectorAll(".track-card")
         .forEach(card => {
 
-            card.addEventListener("click", () => {
+            card.addEventListener("click", event => {
+
+                if (event.target.closest("button")) {
+                    return;
+                }
 
                 const trackId =
                     card.dataset.trackId;
 
                 window.location.href =
                     `track.html?id=${trackId}`;
-
             });
-
         });
-
 }
 
 //funzione per gestire il click sui pulsanti Download e aprire il link di download in una nuova finestra
@@ -214,6 +214,7 @@ function bindDownloadButtons() {
 
             button.addEventListener("click", (event) => {
 
+                //evita che il click sul pulsante si propaghi alla card e apra la pagina di dettaglio della traccia
                 event.stopPropagation();
 
                 const downloadUrl =
@@ -257,83 +258,95 @@ function bindFavoriteButtons() {
         });
 }
 
-function bindPlaylistButtons() {
+//Apertura modal
 
-    document
-        .querySelectorAll(".playlist-btn")
-        .forEach(button => {
+let selectedTrackId = null;
+let playlistModal = null;
+document.addEventListener("click", async event => {
 
-            button.addEventListener(
-                "click",
-                async (event) => {
+    const button =
+        event.target.closest(".playlist-btn");
 
-                    //evita che il click sul pulsante si propaghi alla card e apra la pagina di dettaglio della traccia
-                    event.stopPropagation();
-
-                    const trackId =
-                        button.dataset.trackId;
-
-                    console.log("Adding track to playlist, trackId =", trackId);
-
-                    await addTrackToPlaylistHandler(
-                        trackId
-                    );
-
-                }
-            );
-
-        });
-
-}
-
-async function addTrackToPlaylistHandler(
-    trackId
-) {
-
-    try {
-
-        const playlists =
-            await getMyPlaylists();
-
-        if (playlists.length === 0) {
-
-            alert(
-                "Create a playlist first"
-            );
-
-            return;
-        }
-
-        const message =
-            playlists
-                .map(
-                    p =>
-                        `${p.id} - ${p.title}`
-                )
-                .join("\n");
-
-        const playlistId =
-            prompt(
-                `Choose playlist (specify the id):\n\n${message}`
-            );
-
-        if (!playlistId) {
-            return;
-        }
-
-        await addTrackToPlaylist(
-            playlistId,
-            trackId
-        );
-
-        alert(
-            "Track added to playlist"
-        );
-
-    } catch (error) {
-
-        alert(error.message);
-
+    if (!button) {
+        return;
     }
 
+    event.stopPropagation();
+    event.preventDefault();
+
+    selectedTrackId =
+        button.dataset.trackId;
+
+    await loadPlaylistModal();
+
+    playlistModal = new bootstrap.Modal(
+            document.getElementById(
+                "playlistModal"
+            )
+        );
+
+    playlistModal.show();
+    
+});
+
+async function loadPlaylistModal() {
+
+    const playlists =
+        await getMyPlaylists();
+
+    const container =
+        document.getElementById(
+            "playlist-list"
+        );
+
+    container.innerHTML = playlists
+        .map(
+            playlist => `
+                <button
+                    class="btn btn-info w-100 mb-2 playlist-select-btn"
+                    data-playlist-id="${playlist.id}">
+                    ${playlist.title}
+                </button>
+            `
+        )
+        .join("");
 }
+
+document.addEventListener(
+    "click",
+    async event => {
+
+        if (
+            event.target.classList.contains(
+                "playlist-select-btn"
+            )
+        ) {
+
+            const playlistId =
+                event.target.dataset.playlistId;
+
+            await addTrackToPlaylist(
+                playlistId,
+                selectedTrackId
+            );
+
+            alert(
+                "Track added successfully"
+            );
+
+            playlistModal =
+        new bootstrap.Modal(
+            document.getElementById(
+                "playlistModal"
+            )
+        );
+
+        console.log(playlistModal);
+
+        if (playlistModal) {
+            playlistModal.hide();
+        }
+
+        }
+    }
+);

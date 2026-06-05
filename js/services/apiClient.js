@@ -28,6 +28,8 @@ export async function apiFetch(url, options = {}) {
         
         const errorBody = await response.json();
 
+        alert(errorBody.message);
+
         throw new Error(errorBody.message || "Unexpected error");
 
     }
