@@ -10,3 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+// avatar preview
+document.getElementById("uploadAvatar").addEventListener("change", function (e) {
+    const reader = new FileReader();
+    reader.onload = function () {
+        document.getElementById("avatarPreview").src = reader.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
