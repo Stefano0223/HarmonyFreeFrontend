@@ -1,5 +1,6 @@
 import { isLoggedIn } from "../utils/auth-utils.js";
 import { apiFetch } from "../services/apiClient.js";
+import { getMe } from "../api/auth-api.js";
 import { CORE_BASE_URL } from "../services/config.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -28,24 +29,28 @@ document.getElementById("uploadAvatar").addEventListener("change", function (e) 
 
 async function loadProfile() {
 
-    const response = await apiFetch(
+    const coreResponse = await apiFetch(
         `${CORE_BASE_URL}/api/v1/users/me`
     );
 
-    const user = await response.json();
+    const coreUser = await coreResponse.json();
 
-    console.log("User data:", user);
+    console.log("core User data:", coreUser);
 
-    document.getElementById("profile-name")
-    .textContent = user.username;
+    const authUser = await getMe();
+
+    console.log("auth User data:", authUser);
+
+    document.getElementById("profile-username")
+        .textContent = coreUser.username;
+
+    document.getElementById("profile-firstname")
+        .textContent = `First name: ${coreUser.firstName}`;
+
+    document.getElementById("profile-lastname")
+        .textContent = `Last name: ${coreUser.lastName}`;
 
     document.getElementById("profile-email")
-        .textContent = user.email;
-
-    document.getElementById("username-input")
-        .value = user.username;
-
-    document.getElementById("email-input")
-        .value = user.email;
+        .textContent = `Email: ${authUser.email}`;
 
 }
