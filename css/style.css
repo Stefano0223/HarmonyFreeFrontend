@@ -3008,3 +3008,42 @@ ol {
     font-size: 18px;
     margin-bottom: 12px;
 }
+
+.track-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.track-item:last-child {
+    border-bottom: none;
+}
+
+.track-rank {
+    min-width: 40px;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    color: #ff4fd8;
+    text-shadow: 0 0 10px rgba(255,79,216,.6);
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-title {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.track-artist {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    margin-top: 2px;
+}
