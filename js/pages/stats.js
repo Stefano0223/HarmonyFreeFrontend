@@ -1,7 +1,7 @@
 import {
     getMostPopularTracks,
     getMostFavoritedTracks
-} from "../api/statsApi.js";
+} from "../api/stats-api.js";
 
 async function loadPopularTracks() {
 
@@ -14,14 +14,24 @@ async function loadPopularTracks() {
 
         list.innerHTML = "";
 
-        tracks.forEach(track => {
+        tracks.forEach((track, index) => {
 
             list.innerHTML += `
-                <li>
-                    ${track.title}
-                    - ${track.artistName}
-                    (${track.score})
-                </li>
+                <div class="track-item">
+                    <div class="track-rank">
+                        #${index + 1}
+                    </div>
+
+                    <div class="track-info">
+                        <div class="track-title">
+                            ${track.title}
+                        </div>
+
+                        <div class="track-artist">
+                            ${track.artist || track.artistName}
+                        </div>
+                    </div>
+                </div>
             `;
         });
 
@@ -30,7 +40,7 @@ async function loadPopularTracks() {
         console.error("Error loading popular tracks:", error);
 
         document.getElementById("popular-tracks").innerHTML =
-            "<li>Unable to load data</li>";
+            "<p>Unable to load data</p>";
     }
 }
 
@@ -45,14 +55,24 @@ async function loadFavoritedTracks() {
 
         list.innerHTML = "";
 
-        tracks.forEach(track => {
+        tracks.forEach((track, index) => {
 
             list.innerHTML += `
-                <li>
-                    ${track.title}
-                    - ${track.artistName}
-                    (${track.score})
-                </li>
+                <div class="track-item">
+                    <div class="track-rank">
+                        #${index + 1}
+                    </div>
+
+                    <div class="track-info">
+                        <div class="track-title">
+                            ${track.title}
+                        </div>
+
+                        <div class="track-artist">
+                            ${track.artist || track.artistName}
+                        </div>
+                    </div>
+                </div>
             `;
         });
 
@@ -61,7 +81,7 @@ async function loadFavoritedTracks() {
         console.error("Error loading favorited tracks:", error);
 
         document.getElementById("favorited-tracks").innerHTML =
-            "<li>Unable to load data</li>";
+            "<p>Unable to load data</p>";
     }
 }
 
