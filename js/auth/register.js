@@ -29,9 +29,6 @@ document
         const lastName =
             document.getElementById("register-last-name").value;
 
-        const profileImageUrl =
-            document.getElementById("register-profile-image").value;
-
         // chiamata API register
         try {
 
@@ -58,14 +55,13 @@ document
                 JSON.stringify(authUser)
             );
 
-            console.log(username, firstName, lastName, profileImageUrl);
+            console.log(username, firstName, lastName);
 
             // 4. Creazione utente nel Core
             await createUser({
                 username,
                 firstName,
-                lastName,
-                profileImageUrl
+                lastName
             });
 
             alert("Registration successful!");
