@@ -24,13 +24,58 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // avatar preview
-document.getElementById("uploadAvatar").addEventListener("change", function (e) {
-    const reader = new FileReader();
-    reader.onload = function () {
-        document.getElementById("avatarPreview").src = reader.result;
-    }
-    reader.readAsDataURL(e.target.files[0]);
+document
+    .getElementById("uploadAvatar")
+    .addEventListener("change", async function (e) {
+
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            document.getElementById(
+                "avatarPreview"
+            ).src = reader.result;
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+
+        // upload backend
+        await uploadAvatar();
 });
+
+//Upload della nuova immagine al backend
+async function uploadAvatar() {
+
+    const file =
+        document.getElementById("uploadAvatar")
+            .files[0];
+
+    if (!file) {
+        alert("Please select an image");
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+
+    const response = await fetch(
+        `${CORE_BASE_URL}/api/v1/users/me/avatar`,
+        {
+            method: "PATCH",
+            headers: {
+                Authorization:
+                    `Bearer ${localStorage.getItem("jwt")}`
+            },
+            body: formData
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Avatar upload failed");
+    }
+
+    return await response.json();
+}
 
 async function loadProfile() {
 
@@ -59,6 +104,11 @@ async function loadProfile() {
 
     document.getElementById("profile-email")
         .textContent = `Email: ${currentUser.email}`;
+
+    document.getElementById("avatarPreview").src =
+    currentUser.profileImageUrl
+        ? `${CORE_BASE_URL}${currentUser.profileImageUrl}`
+        : "img/default-user.png";
 
 }
 
