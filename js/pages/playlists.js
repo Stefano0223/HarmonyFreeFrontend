@@ -20,13 +20,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-document
-    .getElementById("create-playlist-btn")
-    .addEventListener(
-        "click",
-        createPlaylistHandler
-    );
-
 async function loadPlaylists() {
 
     try {
@@ -164,37 +157,4 @@ function bindDeleteButtons() {
 
         });
 
-}
-
-async function createPlaylistHandler() {
-
-    try {
-
-        const title =
-            prompt("Playlist title");
-
-        if (!title) {
-            return;
-        }
-
-        const description =
-            prompt("Description");
-
-        const playlist =
-            await createPlaylist({
-                title,
-                description,
-                isPublic: false
-            });
-
-        await loadPlaylists();
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Unable to create playlist"
-        );
-    }
 }
