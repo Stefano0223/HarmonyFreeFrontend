@@ -2971,3 +2971,40 @@ ol {
 		background-position: top 0 left 19%;
 	}
 }
+
+.stats {
+    padding: 100px 0;
+    background: #0a0a1f;
+}
+
+.stats-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 15px;
+    padding: 30px;
+    height: 100%;
+}
+
+.stats-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.popular-title {
+    color: #c86cff;
+    text-shadow: 0 0 12px rgba(200,108,255,.8);
+}
+
+.favorite-title {
+    color: #ff4fd8;
+    text-shadow: 0 0 12px rgba(255,79,216,.8);
+}
+
+#popular-tracks li,
+#favorited-tracks li {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
