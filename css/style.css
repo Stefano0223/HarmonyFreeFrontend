@@ -305,11 +305,11 @@ ol {
 
 .header {
 	background: rgba(42, 1, 74, 0.5);
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
-	z-index: 9;
+	z-index: 9999;
 }
 
 
