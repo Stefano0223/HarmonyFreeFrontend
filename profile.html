@@ -46,7 +46,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
+                                <li><a href="./index.html">Home</a></li>
                                 <li><a href="./about.html">About</a></li>
                                 <li><a href="./discography.html">Music</a></li>
                                 <li><a href="./browse.html">Browse</a></li>
@@ -54,7 +54,7 @@
                                 <li><a href="./blog.html">Blog</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
                                 <li><a href="auth.html" id="login-link"><i class="fa fa-user-o"></i></a></li>
-                                <li><a href="#" id="profile-link" style="display:none;">
+                                <li class="active"><a href="#" id="profile-link" style="display:none;">
                                     <span id="profile-name"></span>
                                 </a></li>
                                 <li><a href="#" id="logout-link" style="display:none;">
@@ -105,10 +105,15 @@
                 </label>
             </div>
 
-            <h2 id="profile-name" style="color: white;"></h2>
-            <p id="profile-email" style="color: white;"></p>
+            <h2 id="profile-username" style="color:white;"></h2>
 
-            <button class="edit-btn"><i class="fa fa-edit"></i> Edit Profile</button>
+            <p id="profile-firstname" style="color:white;"></p>
+
+            <p id="profile-lastname" style="color:white;"></p>
+
+            <p id="profile-email" style="color:white;"></p>
+
+            <button id="edit-profile-btn" class="edit-btn"><i class="fa fa-edit"></i>Edit Profile</button>
 
         </div>
 
@@ -127,27 +132,16 @@
             <div class="tab-content">
 
                 <div class="box">
-                    <h3 style="color: white;" >My Favorite Tracks</h3>
-                    <p style="color: white;">No favorites yet.</p>
-                </div>
+                <h3 style="color:white;">My Favorite Tracks</h3>
 
-                <div class="box">
-                    <h3 style="color: white;">My Playlists</h3>
-                    <p style="color: white;">Create your first playlist.</p>
-                </div>
+                <div id="profile-favorites-container"></div>
+            </div>
 
-                <div class="box">
-                    <h3 style="color: white;">Settings</h3>
+            <div class="box">
+                <h3 style="color:white;">My Playlists</h3>
 
-                    <label style="color: white;">Username</label>
-                    <input id="username-input" type="text">
-
-                    <label style="color: white;">Email</label>
-                    <input id="email-input" type="email">
-
-                    <button class="save-btn">Save Changes</button>
-
-                </div>
+                <div id="profile-playlists-container"></div>
+            </div>
 
             </div>
 
@@ -162,11 +156,97 @@
             <div class="row">
                 
               
-                        </form>
+                        
                     </div>
                 </div>
+    </footer>
+
+    <div
+    class="modal fade"
+    id="editProfileModal"
+    tabindex="-1">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                <h5 class="modal-title">
+                    Edit Profile
+                </h5>
+
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                        
+                </button>
             </div>
 
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label>Username</label>
+                        <input
+                            id="modal-username"
+                            class="form-control"
+                            type="text">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>First Name</label>
+                        <input
+                            id="modal-firstname"
+                            class="form-control"
+                            type="text">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Last Name</label>
+                        <input
+                            id="modal-lastname"
+                            class="form-control"
+                            type="text">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input
+                            id="modal-email"
+                            class="form-control"
+                            type="email">
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+
+                    <button
+                        id="save-profile-btn"
+                        type="button"
+                        class="btn btn-primary">
+                        Save
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
        <!-- Js Plugins -->
         <script type="module" src="js/pages/profile.js"></script>
