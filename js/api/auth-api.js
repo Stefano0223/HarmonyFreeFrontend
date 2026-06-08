@@ -54,6 +54,7 @@ export async function login(email, password) {
 }
 
 export async function getMe() {
+    console.log(localStorage.getItem("jwt"));
     console.log(AUTH_BASE_URL);
     const response = await fetch(
         `${AUTH_BASE_URL}/api/v1/users/me`,
@@ -66,6 +67,27 @@ export async function getMe() {
 
     if (!response.ok) {
         throw new Error("Unable to load current user");
+    }
+
+    return await response.json();
+}
+
+export async function patchEmail(request) {
+
+    const response = await fetch(
+        `${AUTH_BASE_URL}/api/v1/users/me/email`,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+            },
+            body: JSON.stringify(request)
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Unable to update email");
     }
 
     return await response.json();

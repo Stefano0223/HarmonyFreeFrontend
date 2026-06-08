@@ -127,6 +127,10 @@ ol {
     padding-bottom: 67px;
 }
 
+#profile-favorites-container {
+	padding-bottom: 0;
+}
+
 #playlist-tracks-container {
 	padding-bottom: 67px;
 }
