@@ -1,18 +1,20 @@
-import { getPlaylistById, removeTrackFromPlaylist } from "../api/playlist-api.js";
+import { getPlaylistById, getPublicPlaylistById, removeTrackFromPlaylist } from "../api/playlist-api.js";
 import { isLoggedIn } from "../utils/auth-utils.js";
 
 const params = new URLSearchParams(window.location.search);
 
 const playlistId = params.get("id");
 
+const isPublicPlaylist = params.get("public") === "true";
+
+console.log("public =", isPublicPlaylist);
+console.log("logged =", isLoggedIn());
+
 document.addEventListener("DOMContentLoaded", async () => {
 
-    if (!isLoggedIn()) {
-
+    if (!isPublicPlaylist && !isLoggedIn()) {
         alert("Session expired");
-
         window.location.href = "auth.html";
-
         return;
     }
 
@@ -21,9 +23,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadPlaylist() {
 
-    const playlist = await getPlaylistById(playlistId);
-
-    console.log(playlist);
+    const playlist =
+        isPublicPlaylist
+            ? await getPublicPlaylistById(
+                playlistId
+            )
+            : await getPlaylistById(
+                playlistId
+            );
 
     renderPlaylist(playlist);
 }
@@ -88,11 +95,13 @@ function renderPlaylist(playlist) {
                                 Play
                             </button>
 
-                            <button
-                                class="btn btn-danger remove-playlist-btn"
-                                data-track-id="${track.id}">
-                                Remove
-                            </button>
+                            ${!isPublicPlaylist ? `
+                                <button
+                                    class="btn btn-danger remove-playlist-btn"
+                                    data-track-id="${track.id}">
+                                    Remove
+                                </button>
+                            ` : ""}
 
                             ${track.downloadable ? `
                                 <button

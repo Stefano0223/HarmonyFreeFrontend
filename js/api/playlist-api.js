@@ -29,6 +29,38 @@ export async function getPlaylistById(id) {
     return await response.json();
 }
 
+// GET /api/v1/playlists/public
+export async function getPublicPlaylists() {
+
+    const response = await apiFetch(
+        `${CORE_BASE_URL}/api/v1/playlists/public`
+    );
+
+    if (!response.ok) {
+        throw new Error(
+            "Unable to load playlists"
+        );
+    }
+
+    return await response.json();
+}
+
+// GET /api/v1/playlists/public/{id}
+export async function getPublicPlaylistById(id) {
+
+    const response = await fetch(
+        `${CORE_BASE_URL}/api/v1/playlists/public/${id}`
+    );
+
+    if (!response.ok) {
+        throw new Error(
+            "Unable to load public playlist"
+        );
+    }
+
+    return await response.json();
+}
+
 // POST /api/v1/playlists
 export async function createPlaylist(request) {
 

@@ -3,7 +3,10 @@ import {
     createPlaylist,
     deletePlaylist
  } from "../api/playlist-api.js";
+import { renderPlaylists, bindOpenButtons, bindDeleteButtons } from "./playlist-ui.js";
 import { isLoggedIn } from "../utils/auth-utils.js";
+
+console.log("MY PLAYLISTS PAGE");
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -20,141 +23,50 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-async function loadPlaylists() {
+export async function loadPlaylists() {
 
     try {
 
         const playlists = await getMyPlaylists();
 
-        renderPlaylists(playlists);
+        renderPlaylists(playlists, true);
+        bindOpenButtons(false);
+        bindDeleteButtons(loadPlaylists);
 
     } catch (error) {
 
         console.error(error);
 
     }
-
 }
 
-function renderPlaylists(playlists) {
+//salvataggio della nuova playlist con la modale
+const savePlaylistBtn =
+    document.getElementById("savePlaylistBtn");
 
-    const container =
-        document.getElementById(
-            "playlists-container"
-        );
+if (savePlaylistBtn) {
 
-    container.innerHTML = "";
+    savePlaylistBtn.addEventListener(
+        "click",
+        async () => {
 
-    if (playlists.length === 0) {
+            const title =
+                document.getElementById("playlistTitle").value;
 
-        container.innerHTML = `
-            <p>No playlists found.</p>
-        `;
+            const description =
+                document.getElementById("playlistDescription").value;
 
-        return;
-    }
+            const request = {
+                title,
+                description,
+                isPublic: document.getElementById("playlistPublic").checked
+            };
 
-    playlists.forEach(playlist => {
+            await createPlaylist(request);
 
-        container.innerHTML += `
-            <div class="card mb-3">
+            $("#createPlaylistModal").modal("hide");
 
-                <div class="card-body">
-
-                    <h5>
-                        ${playlist.title}
-                    </h5>
-
-                    <p>
-                        ${playlist.description ?? ""}
-                    </p>
-
-                    <button
-                        class="btn btn-success open-playlist-btn"
-                        data-playlist-id="${playlist.id}">
-                        Open
-                    </button>
-
-                    <button
-                        class="btn btn-danger delete-playlist-btn"
-                        data-playlist-id="${playlist.id}">
-                        Delete
-                    </button>
-
-                </div>
-
-            </div>
-        `;
-    });
-
-    bindOpenButtons();
-
-    bindDeleteButtons();
-
-}
-
-function bindOpenButtons() {
-
-    document
-        .querySelectorAll(".open-playlist-btn")
-        .forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                const playlistId =
-                    button.dataset.playlistId;
-
-                window.location.href =
-                    `playlist.html?id=${playlistId}`;
-
-            });
-
-        });
-
-}
-
-function bindDeleteButtons() {
-
-    document
-        .querySelectorAll(".delete-playlist-btn")
-        .forEach(button => {
-
-            button.addEventListener("click", async () => {
-
-                const playlistId =
-                    button.dataset.playlistId;
-
-                const confirmed = confirm(
-                    "Are you sure you want to delete this playlist?"
-                );
-
-                if (!confirmed) {
-                    return;
-                }
-
-                try {
-
-                    await deletePlaylist(
-                        playlistId
-                    );
-
-                    alert(
-                        "Playlist deleted successfully"
-                    );
-
-                    await loadPlaylists();
-
-                } catch (error) {
-
-                    console.error(error);
-
-                    alert(
-                        "Unable to delete playlist"
-                    );
-                }
-
-            });
-
-        });
-
+            await loadPlaylists();
+        }
+    );
 }
