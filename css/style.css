@@ -206,6 +206,14 @@ ol {
     color: red;
 }
 
+/*allineare checkbox e label per "Public Playlist" nella modale create playlist*/
+.form-check-input {
+    margin-left: 0;
+}
+.form-check-label {
+    margin-left: 1rem;
+}
+
 .primary-btn {
 	display: inline-block;
 	font-size: 15px;

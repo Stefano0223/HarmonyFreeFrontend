@@ -158,3 +158,34 @@ function bindDeleteButtons() {
         });
 
 }
+
+//salvataggio della nuova playlist con la modale
+document
+    .getElementById("savePlaylistBtn")
+    .addEventListener("click", async () => {
+
+        const title =
+            document.getElementById(
+                "playlistTitle"
+            ).value;
+
+        const description =
+            document.getElementById(
+                "playlistDescription"
+            ).value;
+
+        const request = {
+            title,
+            description
+        };
+
+        console.log(request);
+
+        // qui chiamerai il backend
+        await createPlaylist(request);
+
+        $("#createPlaylistModal").modal("hide");
+
+        await loadPlaylists();
+
+    });
