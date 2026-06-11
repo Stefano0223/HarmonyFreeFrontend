@@ -1,3 +1,4 @@
+import { isLoggedIn, getToken, getCurrentUser } from "../utils/auth-utils.js";
 import { logout } from "../auth/logout.js";
 import { apiFetch } from "../services/apiClient.js";
 import { CORE_BASE_URL } from "../services/config.js";
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded",  async () => {
     const logoutLink =
         document.getElementById("logout-link");
 
-    if (token) {
+    if (isLoggedIn()) {
 
         loginLink?.style &&
             (loginLink.style.display = "none");
@@ -36,6 +37,9 @@ document.addEventListener("DOMContentLoaded",  async () => {
 });
 
 async function loadNavbarUser() {
+
+    console.log(getToken());
+    console.log(getCurrentUser());
 
     const response =
         await apiFetch(
