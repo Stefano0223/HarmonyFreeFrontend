@@ -56,9 +56,9 @@ function renderTracks(tracks) {
 
     container.innerHTML = "";
 
-    tracks.forEach(track => {
+    console.log(tracks);
 
-        console.log(track);
+    tracks.forEach(track => {
 
         container.innerHTML += `
             <div class="card mb-3 track-card" data-track-id="${track.id}">
