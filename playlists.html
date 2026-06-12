@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="DJoz Template">
+    <meta name="keywords" content="DJoz, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HarmonyFree - My Playlists</title>
+   
+    <link rel="icon"  href="img/favicon-32x32.png">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="css/nowfont.css" type="text/css">
+    <link rel="stylesheet" href="css/rockville.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+           <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+   
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+                <div class="row">
+               <!--  <div class="col-lg-2 col-md-2">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="img/LogoharmonyFree.png" alt=""></a>
+                    </div>-->
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="header__nav">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li><a href="./index.html">Home</a></li>
+                                <li><a href="./about.html">About</a></li>
+                                <li><a href="./discography.html">Music</a></li>
+                                <li><a href="./browse.html">Browse</a></li>
+                                <li><a href="./public_playlists.html">Public Playlists</a></li>
+                                <li><a href="./upload.html">Upload Music</a></li>
+                                <li><a href="./blog.html">Blog</a></li>
+                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="auth.html" id="login-link"><i class="fa fa-user-o"></i></a></li>
+                                <li><a href="#" id="profile-link" style="display:none;">
+                                    <span id="profile-name"></span>
+                                </a></li>
+                                <li><a href="#" id="logout-link" style="display:none;">
+                                    <i class="fa fa-sign-out"></i>
+                                </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+
+                        <a style="margin-top: 100px;" href="#"><i class="fa fa-home"></i>Profile</a>
+                        
+                        <span>My Playlists</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-4">
+
+        <h1>My Playlists</h1>
+
+        <button
+            type="button"
+            id="create-playlist-btn"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#createPlaylistModal">
+            Create Playlist
+        </button>
+
+    </div>
+
+    <div id="playlists-container">
+
+        <!-- Qui verranno inserite dinamicamente le playlist dell'utente -->
+
+    </div>
+
+</div>
+
+<div
+    class="modal fade"
+    id="createPlaylistModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createPlaylistModalLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title"
+                    id="createPlaylistModalLabel">
+                    Create Playlist
+                </h5>
+
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close">
+
+                    <span aria-hidden="true">&times;</span>
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="createPlaylistForm">
+
+                    <div class="form-group">
+
+                        <label for="playlistTitle">
+                            Title
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="playlistTitle"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="playlistDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="playlistDescription"
+                            rows="3">
+                        </textarea>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="playlistPublic">
+
+                    <label
+                        class="form-check-label"
+                        for="playlistPublic">
+                        Public playlist
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="savePlaylistBtn">
+                    Create
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="js/pages/playlists.js"></script>
+ <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.barfiller.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/pages/navbar-auth.js"></script>
+</script>
+</body>
+
+</html>

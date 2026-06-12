@@ -107,6 +107,38 @@ ol {
 	margin: 0;
 }
 
+#player-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    padding: 10px 20px;
+
+    z-index: 9999;
+    margin-top: 0 !important;
+}
+
+#tracks-container {
+    padding-bottom: 120px;
+}
+
+#favorites-container {
+    padding-bottom: 67px;
+}
+
+#profile-favorites-container {
+	padding-bottom: 0;
+}
+
+#playlist-tracks-container {
+	padding-bottom: 67px;
+}
+
+#audio-player {
+    width: 100%;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -164,6 +196,23 @@ ol {
 }
 
 /* buttons */
+
+/*per il pulsante di chiusura delle modali*/
+.close {
+    color: #ff4d4d;
+}
+
+.close:hover {
+    color: red;
+}
+
+/*allineare checkbox e label per "Public Playlist" nella modale create playlist*/
+.form-check-input {
+    margin-left: 0;
+}
+.form-check-label {
+    margin-left: 1rem;
+}
 
 .primary-btn {
 	display: inline-block;
@@ -264,12 +313,13 @@ ol {
 
 .header {
 	background: rgba(42, 1, 74, 0.5);
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
-	z-index: 9;
+	z-index: 9999;
 }
+
 
 .header.header--normal {
 	position: relative;
@@ -297,8 +347,9 @@ ol {
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 45px;
+	margin-right: 20px;
 	position: relative;
+	justify-content: space-between;
 }
 
 .header__menu ul li.active a:after {
@@ -470,7 +521,7 @@ ol {
 
 .linear__icon i {
 	font-size: 50px;
-	color: #5c00ce;
+	color: #ffffff;
 }
 
 @-webkit-keyframes mymove {
@@ -2931,4 +2982,80 @@ ol {
 		margin-top: -970px;
 		background-position: top 0 left 19%;
 	}
+}
+
+.stats {
+    padding: 100px 0;
+    background: #0a0a1f;
+}
+
+.stats-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 15px;
+    padding: 30px;
+    height: 100%;
+}
+
+.stats-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.popular-title {
+    color: #c86cff;
+    text-shadow: 0 0 12px rgba(200,108,255,.8);
+}
+
+.favorite-title {
+    color: #ff4fd8;
+    text-shadow: 0 0 12px rgba(255,79,216,.8);
+}
+
+#popular-tracks li,
+#favorited-tracks li {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.track-item:last-child {
+    border-bottom: none;
+}
+
+.track-rank {
+    min-width: 40px;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    color: #ff4fd8;
+    text-shadow: 0 0 10px rgba(255,79,216,.6);
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-title {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.track-artist {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    margin-top: 2px;
 }
