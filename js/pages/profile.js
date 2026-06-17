@@ -2,7 +2,7 @@ import { isLoggedIn } from "../utils/auth-utils.js";
 import { apiFetch } from "../services/apiClient.js";
 import { getMe, patchEmail } from "../api/auth-api.js";
 import { logout } from "../auth/logout.js";
-import { CORE_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
 let currentUser = null;
 
@@ -59,7 +59,7 @@ async function uploadAvatar() {
     formData.append("file", file);
 
     const response = await fetch(
-        `${CORE_BASE_URL}/api/v1/users/me/avatar`,
+        `${ENV.CORE_API}/api/v1/users/me/avatar`,
         {
             method: "PATCH",
             headers: {
@@ -80,7 +80,7 @@ async function uploadAvatar() {
 async function loadProfile() {
 
     const coreResponse = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/users/me`
+        `${ENV.CORE_API}/api/v1/users/me`
     );
 
     const coreUser = await coreResponse.json();
@@ -107,7 +107,7 @@ async function loadProfile() {
 
     document.getElementById("avatarPreview").src =
     currentUser.profileImageUrl
-        ? `${CORE_BASE_URL}${currentUser.profileImageUrl}`
+        ? `${ENV.CORE_API}${currentUser.profileImageUrl}`
         : "img/default-user.png";
 
 }
@@ -115,7 +115,7 @@ async function loadProfile() {
 async function loadFavorites() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/users/me/favorites`
+        `${ENV.CORE_API}/api/v1/users/me/favorites`
     );
 
     const favorites =
@@ -161,7 +161,7 @@ async function loadFavorites() {
 async function loadPlaylists() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/me`
+        `${ENV.CORE_API}/api/v1/playlists/me`
     );
 
     const playlists =
@@ -287,7 +287,7 @@ document
             }
 
             await apiFetch(
-                `${CORE_BASE_URL}/api/v1/users/me`,
+                `${ENV.CORE_API}/api/v1/users/me`,
                 {
                     method: "PATCH",
                     body: JSON.stringify(coreUserpayload),

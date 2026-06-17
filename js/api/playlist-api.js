@@ -1,11 +1,11 @@
 import { apiFetch } from "../services/apiClient.js";
-import { CORE_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
 // GET /api/v1/playlists/me
 export async function getMyPlaylists() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/me`
+        `${ENV.CORE_API}/api/v1/playlists/me`
     );
 
     if (!response.ok) {
@@ -19,7 +19,7 @@ export async function getMyPlaylists() {
 export async function getPlaylistById(id) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/${id}`
+        `${ENV.CORE_API}/api/v1/playlists/${id}`
     );
 
     if (!response.ok) {
@@ -33,7 +33,7 @@ export async function getPlaylistById(id) {
 export async function getPublicPlaylists() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/public`
+        `${ENV.CORE_API}/api/v1/playlists/public`
     );
 
     if (!response.ok) {
@@ -49,7 +49,7 @@ export async function getPublicPlaylists() {
 export async function getPublicPlaylistById(id) {
 
     const response = await fetch(
-        `${CORE_BASE_URL}/api/v1/playlists/public/${id}`
+        `${ENV.CORE_API}/api/v1/playlists/public/${id}`
     );
 
     if (!response.ok) {
@@ -65,7 +65,7 @@ export async function getPublicPlaylistById(id) {
 export async function createPlaylist(request) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists`,
+        `${ENV.CORE_API}/api/v1/playlists`,
         {
             method: "POST",
             headers: {
@@ -86,7 +86,7 @@ export async function createPlaylist(request) {
 export async function updatePlaylist(id, request) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/${id}`,
+        `${ENV.CORE_API}/api/v1/playlists/${id}`,
         {
             method: "PUT",
             headers: {
@@ -107,7 +107,7 @@ export async function updatePlaylist(id, request) {
 export async function deletePlaylist(id) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/${id}`,
+        `${ENV.CORE_API}/api/v1/playlists/${id}`,
         {
             method: "DELETE"
         }
@@ -122,7 +122,7 @@ export async function deletePlaylist(id) {
 export async function getPlaylistTracks(id) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/${id}/tracks`
+        `${ENV.CORE_API}/api/v1/playlists/${id}/tracks`
     );
 
     if (!response.ok) {
@@ -139,7 +139,7 @@ export async function addTrackToPlaylist(
 ) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/${playlistId}/tracks`,
+        `${ENV.CORE_API}/api/v1/playlists/${playlistId}/tracks`,
         {
             method: "POST",
             headers: {
@@ -169,7 +169,7 @@ export async function removeTrackFromPlaylist(
 ) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/${playlistId}/tracks/${trackId}`,
+        `${ENV.CORE_API}/api/v1/playlists/${playlistId}/tracks/${trackId}`,
         {
             method: "DELETE"
         }

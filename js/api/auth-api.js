@@ -1,11 +1,11 @@
-import { AUTH_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
 export async function register(userData) {
 
-    console.log(AUTH_BASE_URL);
+    console.log(ENV.AUTH_API);
 
     const response = await fetch(
-        `${AUTH_BASE_URL}/api/v1/auth/register`,
+        `${ENV.AUTH_API}/api/v1/auth/register`,
         {
             method: "POST",
             headers: {
@@ -23,7 +23,7 @@ export async function register(userData) {
 export async function login(email, password) {
 
     const response = await fetch(
-        `${AUTH_BASE_URL}/api/v1/auth/login`,
+        `${ENV.AUTH_API}/api/v1/auth/login`,
         {
             method: "POST",
             headers: {
@@ -55,9 +55,9 @@ export async function login(email, password) {
 
 export async function getMe() {
     console.log(localStorage.getItem("jwt"));
-    console.log(AUTH_BASE_URL);
+    console.log(ENV.AUTH_API);
     const response = await fetch(
-        `${AUTH_BASE_URL}/api/v1/users/me`,
+        `${ENV.AUTH_API}/api/v1/users/me`,
         {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("jwt")}`
@@ -75,7 +75,7 @@ export async function getMe() {
 export async function patchEmail(request) {
 
     const response = await fetch(
-        `${AUTH_BASE_URL}/api/v1/users/me/email`,
+        `${ENV.AUTH_API}/api/v1/users/me/email`,
         {
             method: "PATCH",
             headers: {
