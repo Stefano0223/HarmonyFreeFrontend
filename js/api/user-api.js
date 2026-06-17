@@ -1,5 +1,5 @@
 import { apiFetch } from "../services/apiClient.js";
-import { AUTH_BASE_URL, CORE_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
 /**
  * Crea il profilo utente nel Core
@@ -7,7 +7,7 @@ import { AUTH_BASE_URL, CORE_BASE_URL } from "../services/config.js";
 export async function createUser(userData) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/users`,
+        `${ENV.CORE_API}/api/v1/users`,
         {
             method: "POST",
             headers: {
@@ -35,7 +35,7 @@ export async function createUser(userData) {
 export async function getAuthCurrentUser() {
 
     const response = await apiFetch(
-        `${AUTH_BASE_URL}/api/v1/users/me`
+        `${ENV.AUTH_API}/api/v1/users/me`
     );
 
     if (!response.ok) {
@@ -51,7 +51,7 @@ export async function getAuthCurrentUser() {
 export async function getCoreCurrentUserProfile() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/users/me`
+        `${ENV.CORE_API}/api/v1/users/me`
     );
 
     if (!response.ok) {
@@ -67,7 +67,7 @@ export async function getCoreCurrentUserProfile() {
 export async function getMyPlaylists() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/playlists/me`
+        `${ENV.CORE_API}/api/v1/playlists/me`
     );
 
     if (!response.ok) {
@@ -83,7 +83,7 @@ export async function getMyPlaylists() {
 export async function getMyFavorites() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/favorites/me`
+        `${ENV.CORE_API}/api/v1/favorites/me`
     );
 
     if (!response.ok) {

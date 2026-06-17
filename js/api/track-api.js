@@ -1,10 +1,10 @@
 import { apiFetch } from "../services/apiClient.js";
-import { CORE_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
 export async function getAllTracks() {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/tracks`
+        `${ENV.CORE_API}/api/v1/tracks`
     );
 
     if (!response.ok) {
@@ -17,7 +17,7 @@ export async function getAllTracks() {
 export async function getTrackById(id) {
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/tracks/${id}`
+        `${ENV.CORE_API}/api/v1/tracks/${id}`
     );
 
     if (!response.ok) {
@@ -52,7 +52,7 @@ export async function searchTracks(filters = {}) {
     }
 
     const response = await apiFetch(
-        `${CORE_BASE_URL}/api/v1/tracks?${params.toString()}`
+        `${ENV.CORE_API}/api/v1/tracks?${params.toString()}`
     );
 
     if (!response.ok) {

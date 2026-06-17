@@ -1,7 +1,7 @@
 import { apiFetch } from "../services/apiClient.js";
-import { CORE_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
-const API_URL = `${CORE_BASE_URL}/api/v1/users/me/favorites`;
+const API_URL = `${ENV.CORE_API}/api/v1/users/me/favorites`;
 
 export async function getFavorites() {
 

@@ -1,7 +1,7 @@
 import { isLoggedIn, getToken, getCurrentUser } from "../utils/auth-utils.js";
 import { logout } from "../auth/logout.js";
 import { apiFetch } from "../services/apiClient.js";
-import { CORE_BASE_URL } from "../services/config.js";
+import { ENV } from "../services/config.js";
 
 document.addEventListener("DOMContentLoaded",  async () => {
 
@@ -43,7 +43,7 @@ async function loadNavbarUser() {
 
     const response =
         await apiFetch(
-            `${CORE_BASE_URL}/api/v1/users/me`
+            `${ENV.CORE_API}/api/v1/users/me`
         );
 
     const user =
