@@ -1,2 +1,4 @@
-export const AUTH_BASE_URL = "http://localhost:8081";
-export const CORE_BASE_URL = "http://localhost:8080";
+export const ENV = {
+    AUTH_API: "https://harmonyfree-auth.onrender.com",
+    CORE_API: "https://harmonyfree-core.onrender.com"
+};
