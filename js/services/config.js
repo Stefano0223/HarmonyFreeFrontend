@@ -1,4 +1,4 @@
 export const ENV = {
-    AUTH_API: "http://localhost:8081",
-    CORE_API: "http://localhost:8080"
+    AUTH_API: "https://harmonyfree-auth.onrender.com",
+    CORE_API: "https://harmonyfree-core.onrender.com"
 };
