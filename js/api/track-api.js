@@ -31,6 +31,9 @@ export async function searchTracks(filters = {}) {
 
     const params = new URLSearchParams();
 
+    params.append("offset", filters.offset ?? 0);
+    params.append("limit", filters.limit ?? 20);
+
     if (filters.query) {
         params.append("query", filters.query);
     }

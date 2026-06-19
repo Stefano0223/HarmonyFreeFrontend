@@ -3,14 +3,32 @@ import { getMyPlaylists, addTrackToPlaylist } from "../api/playlist-api.js";
 import { isLoggedIn } from "../utils/auth-utils.js";
 import { addFavorite } from "../api/favorite-api.js";
 
+let currentFilters = {};
+let currentOffset = 0;
+const limit = 20;
+
+async function loadTracks() {
+
+    //viene restituita una pagina contenente sia le tracce, sia le informazioni di paginazione
+    const page = await searchTracks({
+        ...currentFilters,
+        offset: currentOffset,
+        limit
+    });
+
+    console.log(page);
+
+    renderTracks(page.content);
+
+    renderPagination(page);
+}
+
 //al caricamento della pagina, recupera e mostra tutte le tracce
 document.addEventListener("DOMContentLoaded", async () => {
 
     try {
 
-        const tracks = await searchTracks();
-
-        renderTracks(tracks);
+        await loadTracks();
 
     } catch (error) {
 
@@ -35,11 +53,14 @@ document.getElementById("search-btn").addEventListener("click", async () => {
             genre: document.getElementById("genre-filter").value
         };
 
+        currentFilters = filters;
+
+        // nuova ricerca -> si riparte dalla prima pagina
+        currentOffset = 0;
+
         try {
 
-            const tracks = await searchTracks(filters);
-
-            renderTracks(tracks);
+            await loadTracks();
 
         } catch (error) {
 
@@ -55,8 +76,6 @@ function renderTracks(tracks) {
     const container = document.getElementById("tracks-container");
 
     container.innerHTML = "";
-
-    console.log(tracks);
 
     tracks.forEach(track => {
 
@@ -350,3 +369,138 @@ document.addEventListener(
         }
     }
 );
+
+function renderPagination(page) {
+
+    const topContainer =
+        document.getElementById(
+            "pagination-container-top"
+        );
+
+    const bottomContainer =
+        document.getElementById(
+            "pagination-container-bottom"
+        );
+
+    const paginationHtml =
+        buildPaginationHtml(page);
+
+    topContainer.innerHTML =
+        paginationHtml;
+
+    bottomContainer.innerHTML =
+        paginationHtml;
+
+    bindPaginationButtons();
+
+}
+
+function buildPaginationHtml(page) {
+
+    let html = "";
+
+    const totalPages = Math.ceil(
+        page.totalElements / page.limit
+    );
+
+    const currentPage =
+        Math.floor(
+            page.offset / page.limit
+        ) + 1;
+
+    //non vogliamo creare tutti i pulsanti delle pagine,
+    //ma solo quelli che si trovano intorno alla pagina corrente.
+    const startPage = Math.max(1, currentPage - 2);
+    const endPage = Math.min(totalPages, currentPage + 2);
+
+    // First
+    html += `
+        <button
+            class="btn btn-secondary me-2 page-btn"
+            data-page="1"
+            ${currentPage === 1 ? "disabled" : ""}>
+            First
+        </button>
+    `;
+
+    // Prev
+    html += `
+        <button
+            class="btn btn-secondary me-2 page-btn"
+            data-page="${currentPage - 1}"
+            ${currentPage === 1 ? "disabled" : ""}>
+            Prev
+        </button>
+    `;
+
+    // Numeri pagina
+    for (let i = startPage; i <= endPage; i++) {
+
+        html += `
+            <button
+                class="btn ${
+                    i === currentPage
+                        ? "btn-primary"
+                        : "btn-outline-primary"
+                } me-1 page-btn"
+                data-page="${i}">
+                ${i}
+            </button>
+        `;
+    }
+
+    // Next
+    html += `
+        <button
+            class="btn btn-secondary ms-2 page-btn"
+            data-page="${currentPage + 1}"
+            ${!page.hasNext ? "disabled" : ""}>
+            Next
+        </button>
+    `;
+
+    // Last
+    html += `
+        <button
+            class="btn btn-secondary ms-2 page-btn"
+            data-page="${totalPages}"
+            ${currentPage === totalPages ? "disabled" : ""}>
+            Last
+        </button>
+    `;
+
+    return html;
+
+}
+
+function bindPaginationButtons() {
+
+    document
+        .querySelectorAll(".page-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                async () => {
+
+                    const page =
+                        parseInt(
+                            button.dataset.page
+                        );
+
+                    currentOffset =
+                        (page - 1) * limit;
+
+                    await loadTracks();
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                }
+            );
+
+        });
+    
+}
