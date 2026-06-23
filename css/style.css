@@ -872,7 +872,10 @@ section.container {
 }
 
 .youtube__item__pic {
-	height: 240px;
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+	min-height: 320px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
