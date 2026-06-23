@@ -30,7 +30,7 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
+     
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -46,21 +46,45 @@
                             <ul>
                                 <li class="active"><a href="./index.html">Home</a></li>
                                 <li><a href="./about.html">About</a></li>
-                                <li><a href="./discography.html">Music</a></li>
-                                <li><a href="./browse.html">Browse</a></li>
-                                <li><a href="./public_playlists.html">Public Playlists</a></li>
-                                <li><a href="./upload.html">Upload Music</a></li>
+                              <!--  <li><a href="./discography.html">Music</a></li> -->
+                             <!--    <li><a href="./browse.html">Browse</a></li> -->
+                               <!--  <li><a href="./public_playlists.html">Public Playlists</a></li> -->
+                               <!--  <li><a href="./upload.html">Upload Music</a></li> -->
                                 <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="./contact.html">Contact</a></li>   
+                                 <li>
+                            <a href="browse.html" id="search-link">
+                             <i class="fa fa-search"></i>
+                              </a>
+                            </li>
+                            
+                            <li>
+                             <a href="upload.html" id="arrow-link">
+                          <i class="fa fa-arrow-up"></i>
+                           </a>
+                        </li>
+                        
+
+                        <li>
+                      <a href="public_playlists.html" id="music-link">
+                          <i class="fa fa-music"></i>
+                          </a>
+                            </li>
                                 <li><a href="auth.html" id="login-link"><i class="fa fa-user-o"></i></a></li>
                                 <li><a href="#" id="profile-link" style="display:none;">
                                     <span id="profile-name"></span>
                                 </a></li>
+
+                            
+
+
                                 <li><a href="#" id="logout-link" style="display:none;">
                                     <i class="fa fa-sign-out"></i>
                                 </a></li>
+
                             </ul>
                         </nav>
+      
                     </div>
                 </div>
             </div>
@@ -270,39 +294,44 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>New feed</h2>
-                        <h1>Latest Releases</h1>
+                        <h2>Latest Releases</h2>
+                      
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="youtube__item">
-                        <div class="youtube__item__pic set-bg" data-setbg="img/discography/1.jpg">
-                         
-                        </div>
+                        <div id="latest-track-img-1" class="youtube__item__pic set-bg" data-setbg="img/discography/1.jpg"></div>
                         <div class="youtube__item__text">
-                            <h4 style="text-align: center;">FEAR AND PARANOIA</h4>
+                            <h4 id="latest-track-title-1"
+                                style="text-align: center;">
+                                FEAR AND PARANOIA
+                            </h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="youtube__item">
-                        <div class="youtube__item__pic set-bg" data-setbg="img/discography/3.jpg">
-                           
-                        </div>
+                        <div id="latest-track-img-2" class="youtube__item__pic set-bg" data-setbg="img/discography/3.jpg"></div>
+
                         <div class="youtube__item__text">
-                            <h4 style="text-align: center;">MOUNTAIN STREAM HARP</h4>
+                            <h4 id="latest-track-title-2"
+                                style="text-align: center;">
+                                MOUNTAIN STREAM HARP
+                            </h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="youtube__item">
-                       <div class="youtube__item__pic set-bg" data-setbg="img/discography/2.jpg">
-                          
-                        </div>
+                       <div id="latest-track-img-3" class="youtube__item__pic set-bg" data-setbg="img/discography/2.jpg"></div>
+
                         <div class="youtube__item__text">
-                            <h4 style="text-align: center;">COUNTING THE STARS</h4>
+                            <h4 id="latest-track-title-3"
+                                style="text-align: center;">
+                                COUNTING THE STARS
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -407,6 +436,7 @@
     <script src="js/main.js"></script>
     <script type="module" src="js/pages/navbar-auth.js"></script>
     <script type="module" src="js/pages/stats.js"></script>
+    <script type="module" src="js/pages/latest-tracks.js"></script>
 
     <!-- Music Plugin -->
     <script src="js/jquery.jplayer.min.js"></script>

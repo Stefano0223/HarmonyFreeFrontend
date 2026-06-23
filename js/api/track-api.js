@@ -64,3 +64,16 @@ export async function searchTracks(filters = {}) {
 
     return await response.json();
 }
+
+export async function getLatestTracks(limit = 3) {
+
+    const response = await fetch(
+        `${ENV.CORE_API}/api/v1/tracks/latest?limit=${limit}`
+    );
+
+    if (!response.ok) {
+        throw new Error("Unable to load latest tracks");
+    }
+
+    return await response.json();
+}
