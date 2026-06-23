@@ -349,6 +349,22 @@ section.container {
 	margin-right: 45px;
 }
 
+.header__menu {
+    display: flex;
+    justify-content: center; /* centra orizzontalmente */
+    align-items: center;
+    width: 100%;
+}
+
+.header__menu ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* spazio tra le voci */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
