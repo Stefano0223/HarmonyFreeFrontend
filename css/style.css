@@ -1268,6 +1268,21 @@ section.container {
 	color: #c11;
 }
 
+.footer__attribution {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.footer__attribution p {
+    color: #b7b7b7;
+    font-size: 14px;
+    margin: 0;
+}
+
+.footer__attribution a {
+    color: #5c00ce;
+}
+
 /*---------------------
   Breadcrumb
 -----------------------*/
