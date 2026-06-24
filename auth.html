@@ -93,43 +93,108 @@
     <!-- Header Section End -->
 <div class="auth-container">
 
+
   <div class="auth-box">
 
-    <!-- REGISTER -->
-    <div class="form-box register-box">
-      <h2>Register</h2>
 
-      <input id="register-email" type="email" placeholder="Email">
-      <input id="register-username" type="text" placeholder="Username">
-      <input id="register-first-name" type="text" placeholder="First Name">
-      <input id="register-last-name" type="text" placeholder="Last Name">
-      <input id="register-password" type="password" placeholder="Password">
-      <input id="register-confirm-password" type="password" placeholder="Confirm Password">
+<h2 class="auth-title">
+    Bentornato
+</h2>
 
-      <button id="register-button">Sign Up</button>
+<p class="auth-subtitle">
+    Accedi al tuo account
+</p>
 
-      <p>
-        Already have an account?
-        <a href="#" id="showLogin">Login</a>
-      </p>
-    </div>
 
-    <!-- LOGIN -->
-    <div class="form-box login-box">
-      <h2>Login</h2>
 
-      <input id="login-email" type="email" placeholder="Email">
-      <input id="login-password" type="password" placeholder="Password">
+<div class="form-box active">
 
-      <button id="login-button">Login</button>
 
-      <p>
-        Don't have an account?
-        <a href="#" id="showRegister">Register</a>
-      </p>
-    </div>
+<input 
+placeholder="Email">
 
-  </div>
+
+<input 
+type="password"
+placeholder="Password">
+
+
+
+<button>
+Accedi
+</button>
+
+
+<p>
+Non hai un account?
+<a onclick="showRegister()">
+Registrati
+</a>
+</p>
+
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<input 
+placeholder="Nome">
+
+
+<input 
+placeholder="Email">
+
+
+<input 
+type="password"
+placeholder="Password">
+
+
+
+<button>
+Crea account
+</button>
+
+
+
+<p>
+Hai già un account?
+<a onclick="showLogin()">
+Accedi
+</a>
+</p>
+
+
+</div>
+
+
+
+
+<div class="divider">
+oppure
+</div>
+
+
+
+<div class="social-login">
+
+
+<button class="social-btn google">
+🌐 Continua con Google
+</button>
+
+
+<button class="social-btn instagram">
+📷 Continua con Instagram
+</button>
+
+
+</div>
+
+
 </div>
   <!-- Footer Section Begin -->
     <footer class="footer spad set-bg" data-setbg="img/footer-bg.png">
