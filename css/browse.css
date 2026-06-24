@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at top left, #2de2e6 0%, transparent 25%),
+        radial-gradient(circle at bottom right, #7b2ff7 0%, transparent 30%),
+        #090b12;
+
+    background-attachment: fixed;
+    background-size: cover;
+
+    font-family: 'Inter', sans-serif;
+}
