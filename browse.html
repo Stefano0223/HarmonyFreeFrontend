@@ -110,158 +110,190 @@
     </div>
     
     <!-- Browse Section -->
-    <section class="container mt-5">
+   <section class="container mt-5 browse-page">
 
-        <div class="text-center mb-5">
-            <h1 style="margin-top: 10px; color: white; font-family: sans-serif;">Browse Music</h1>
-            <p style="margin-top: 10px; color: white; font-family: sans-serif;">Search, discover and download Creative Commons tracks.</p>
-        </div>
+    <div class="text-center mb-5">
 
-        <!-- Search -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <input
-                        type="text"
-                        id="search-input"
-                        class="form-control"
-                        placeholder="Search tracks...">
-            </div>
-        </div>
+        <h1 class="page-title" style="font-family: sans-serif;">
+            Browse Music
+        </h1>
 
-        <!-- Filters -->
-        <div class="row mb-4">
+        <p class="page-subtitle" style="font-family: sans-serif;">
+            Search, discover and download Creative Commons tracks.
+        </p>
 
-            <div class="col-md-3">
-                <input
-                        type="text"
-                        id="title-filter"
-                        class="form-control"
-                        placeholder="Title">
-            </div>
+    </div>
 
-            <div class="col-md-3">
-                <input
-                        type="text"
-                        id="artist-filter"
-                        class="form-control"
-                        placeholder="Artist">
-            </div>
+    <!-- SEARCH -->
 
-            <div class="col-md-3">
-                <input
-                        type="text"
-                        id="album-filter"
-                        class="form-control"
-                        placeholder="Album">
-            </div>
+    <div class="row mb-4">
 
-            <div class="col-md-3">
-                <input
-                        type="text"
-                        id="genre-filter"
-                        class="form-control"
-                        placeholder="Genre">
-            </div>
+        <div class="col-md-12">
+
+            <input
+                type="text"
+                id="search-input"
+                class="form-control custom-input"
+                placeholder="Search tracks...">
 
         </div>
 
-        <!-- Search Button -->
-        <div class="row mb-5">
-            <div class="col-md-12 text-center">
-                <button
-                        id="search-btn"
-                        class="btn btn-primary">
-                    Search
-                </button>
-            </div>
+    </div>
+
+    <!-- FILTERS -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-3">
+            <input
+                type="text"
+                id="title-filter"
+                class="form-control custom-input"
+                placeholder="Title">
         </div>
 
-        <!-- Pulsanti di paginazione a inizio pagina, subito sotto al pulsante search -->
-        <div
-            id="pagination-container-top"
-            class="pagination-container d-flex justify-content-center align-items-center flex-wrap mt-3 mb-4">
+        <div class="col-md-3">
+            <input
+                type="text"
+                id="artist-filter"
+                class="form-control custom-input"
+                placeholder="Artist">
         </div>
 
-        <!-- Results -->
-        <div class="row">
-            <div class="col-md-12">
-
-                <h3 style="margin-top: 10px; color: white; font-family: sans-serif;">Results</h3>
-
-                <div id="tracks-container">
-
-                    <!-- qua compariranno i risultati della ricerca -->
-
-                </div>
-
-                <!-- Pulsanti di paginazione in fondo alla pagina -->
-                <div
-                    id="pagination-container-bottom" class="pagination-container d-flex justify-content-center align-items-center flex-wrap mt-2 mb-3">
-
-                    <!-- qua compariranno i pulsanti per la paginazione -->
-
-                </div>
-
-            </div>
+        <div class="col-md-3">
+            <input
+                type="text"
+                id="album-filter"
+                class="form-control custom-input"
+                placeholder="Album">
         </div>
 
-        <!-- Audio Player -->
-        <div id="player-container">
-            <audio
-                id="audio-player"
-                controls>
-                Your browser does not support audio playback.
-            </audio>
+        <div class="col-md-3">
+            <input
+                type="text"
+                id="genre-filter"
+                class="form-control custom-input"
+                placeholder="Genre">
         </div>
 
-    </section>
+    </div>
 
-   
-     <!-- Footer Section Begin 
-    <footer class="footer spad set-bg" data-setbg="img/footer-bg.png">
-        <div class="container">
-            <div class="row">
-                
-              
-                        
-                    </div>
-                </div>
-    </footer>
--->
+    <!-- BUTTON -->
+
+    <div class="row mb-5">
+
+        <div class="col-md-12 text-center">
+
+            <button
+                id="search-btn"
+                class="btn custom-btn" style="font-family: sans-serif;">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- PAGINATION TOP -->
+
     <div
+        id="pagination-container-top"
+        class="pagination-container d-flex justify-content-center align-items-center flex-wrap mt-3 mb-4">
+    </div>
+
+    <!-- RESULTS -->
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h3 class="results-title" style="font-family: sans-serif;">
+                Results
+            </h3>
+
+            <div id="tracks-container">
+
+                <!-- risultati dinamici -->
+
+                <!-- esempio -->
+
+                <div class="track-card">
+
+                    <h5 style="font-family: sans-serif;">Track Title</h5>
+
+                    <p style="font-family: sans-serif;">Artist Name</p>
+
+                </div>
+
+            </div>
+
+            <div
+                id="pagination-container-bottom"
+                class="pagination-container d-flex justify-content-center align-items-center flex-wrap mt-3 mb-4">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AUDIO PLAYER -->
+
+    <div id="player-container">
+
+        <audio
+            id="audio-player"
+            controls>
+
+            Your browser does not support audio playback.
+
+        </audio>
+
+    </div>
+
+</section>
+
+
+<!-- MODAL PLAYLIST -->
+
+<div
     class="modal fade"
     id="playlistModal"
     tabindex="-1">
 
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
 
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        Select a playlist
-                    </h5>
+        <div class="modal-content">
 
-                    <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close">
+            <div class="modal-header">
 
-                        <span aria-hidden="true">
-                            &times;
-                        </span>
+                <h5 class="modal-title">
+                    Select a playlist
+                </h5>
 
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal">
 
-                <div
-                    class="modal-body"
-                    id="playlist-list">
-                </div>
+                    <span>&times;</span>
+
+                </button>
 
             </div>
+
+            <div
+                class="modal-body"
+                id="playlist-list">
+
+            </div>
+
         </div>
 
+    </div>
+
+</div>
     </div>  
     
     <!-- Js Plugins -->
