@@ -4,7 +4,9 @@ import { getToken } from "../utils/auth-utils.js";
 
 document
     .getElementById("register-button")
-    .addEventListener("click", async () => {
+    .addEventListener("click", async (event) => {
+
+        event.preventDefault();
 
         const email =
             document.getElementById("register-email").value;
@@ -12,10 +14,10 @@ document
         const password =
             document.getElementById("register-password").value;
 
-        const confirmPassword =
-            document.getElementById("register-confirm-password").value;
+        const retypePassword =
+            document.getElementById("register-retype-password").value;
 
-        if (password !== confirmPassword) {
+        if (password !== retypePassword) {
             alert("Passwords do not match");
             return;
         }
@@ -32,13 +34,13 @@ document
         // chiamata API register
         try {
 
-            console.log(email, password, confirmPassword);
+            console.log(email, password, retypePassword);
 
             // 1. Registrazione su Auth
             await register({
                 email,
                 password,
-                confirmPassword
+                confirmPassword: retypePassword
             });
 
             // 2. Login automatico
