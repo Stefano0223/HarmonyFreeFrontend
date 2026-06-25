@@ -91,51 +91,143 @@
         </div>
     </header>
     <!-- Header Section End -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <div class="auth-container">
 
-  <div class="auth-box">
+    <div class="auth-box">
 
-    <!-- REGISTER -->
-    <div class="form-box register-box">
-      <h2>Register</h2>
+        <!-- LOGIN -->
 
-      <input id="register-email" type="email" placeholder="Email">
-      <input id="register-username" type="text" placeholder="Username">
-      <input id="register-first-name" type="text" placeholder="First Name">
-      <input id="register-last-name" type="text" placeholder="Last Name">
-      <input id="register-password" type="password" placeholder="Password">
-      <input id="register-confirm-password" type="password" placeholder="Confirm Password">
+        <form class="form-box active" id="loginForm">
 
-      <button id="register-button">Sign Up</button>
+            <h2 style="font-family: sans-serif;">Log in</h2>
 
-      <p>
-        Already have an account?
-        <a href="#" id="showLogin">Login</a>
-      </p>
+            <input id="login-email" type="email" placeholder="Email" required>
+
+            <input id="login-password" type="password" placeholder="Password" required>
+
+            <button id="login-button" type="submit">
+                Log in
+            </button>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <div class="social-login">
+
+                <button type="button" class="social-btn google">
+                    <i class="fa-brands fa-google"></i>
+                    Log in with Google
+                </button>
+
+                <button type="button" class="social-btn facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                     Log in with Facebook
+                </button>
+
+                <button type="button" class="social-btn instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                    Log in with Instagram
+                </button>
+
+            </div>
+
+            <p style="font-family: sans-serif;">
+                Don't have an account?
+                <a onclick="showRegister()">Register now!</a>
+            </p>
+
+        </form>
+
+        <!-- REGISTER -->
+
+        <form class="form-box" id="registerForm">
+
+            <h2 style="font-family: sans-serif;">Register</h2>
+
+            <input id="register-first-name" type="text" placeholder="First Name" required>
+
+            <input id="register-last-name" type="text" placeholder="Last name" required>
+
+            <input id="register-username" type="text" placeholder="Username" required>
+
+            <input id="register-email" type="email" placeholder="Email" required>
+
+            <input id="register-password" type="password" placeholder="Password" required>
+
+            <input id="register-retype-password" type="password" placeholder="Retype password" required>
+
+            <button id="register-button" type="submit">
+                Register!
+            </button>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <div class="social-login">
+
+                <button type="button" class="social-btn google">
+                    <i class="fa-brands fa-google"></i>
+                    Sign up with Google
+                </button>
+
+                <button type="button" class="social-btn facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    Sign up with Facebook
+                </button>
+
+                <button type="button" class="social-btn instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                    Sign up with Instagram
+                </button>
+
+            </div>
+
+            <p style="font-family: sans-serif;">
+                Do you already have an account?
+                <a onclick="showLogin()">Sign in</a>
+            </p>
+
+        </form>
+
     </div>
 
-    <!-- LOGIN -->
-    <div class="form-box login-box">
-      <h2>Login</h2>
-
-      <input id="login-email" type="email" placeholder="Email">
-      <input id="login-password" type="password" placeholder="Password">
-
-      <button id="login-button">Login</button>
-
-      <p>
-        Don't have an account?
-        <a href="#" id="showRegister">Register</a>
-      </p>
-    </div>
-
-  </div>
 </div>
-  <!-- Footer Section Begin -->
+
+<script>
+
+function showRegister() {
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("active");
+
+    document
+        .getElementById("registerForm")
+        .classList.add("active");
+}
+
+function showLogin() {
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("active");
+
+    document
+        .getElementById("loginForm")
+        .classList.add("active");
+}
+
+</script>
+  <!-- Footer Section Begin 
     <footer class="footer spad set-bg" data-setbg="img/footer-bg.png">
         <div class="container">
             <div class="row">
-                
+                -->
               
                         </form>
                     </div>
@@ -153,7 +245,6 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/pages/auth.js"></script>
 
     <!-- Music Plugin -->
     <script src="js/jquery.jplayer.min.js"></script>

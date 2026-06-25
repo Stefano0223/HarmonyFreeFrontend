@@ -2,7 +2,9 @@ import { login, getMe } from "../api/auth-api.js";
 
 document
     .getElementById("login-button")
-    .addEventListener("click", async () => {
+    .addEventListener("click", async (event) => {
+
+        event.preventDefault();
 
         const email =
             document.getElementById("login-email").value;
