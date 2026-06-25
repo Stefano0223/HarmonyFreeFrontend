@@ -1367,6 +1367,10 @@ section.container {
 	margin-bottom: 35px;
 }
 
+.about__text a {
+	border-radius: 12px;
+}
+
 /*---------------------
   Skills
 -----------------------*/
