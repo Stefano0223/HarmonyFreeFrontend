@@ -2006,6 +2006,8 @@ section.container {
 	-webkit-box-shadow: 0px 3px 10px rgba(22, 41, 124, 0.1);
 	box-shadow: 0px 3px 10px rgba(22, 41, 124, 0.1);
 	margin-bottom: 50px;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .blog__large__pic {
@@ -2029,9 +2031,11 @@ section.container {
 }
 
 .blog__large__text {
-	background: #ffffff;
-	text-align: center;
-	padding: 30px 40px 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+
+    text-align: center;
+    padding: 30px 40px 0;
 }
 
 .blog__large__text span {
@@ -2041,7 +2045,7 @@ section.container {
 }
 
 .blog__large__text h4 {
-	color: #111111;
+	color: #ffffff;
 	font-weight: 700;
 	line-height: 31px;
 	margin-top: 5px;
@@ -2073,7 +2077,7 @@ section.container {
 }
 
 .blog__large__widget ul li span {
-	color: #111111;
+	color: #ffffff;
 }
 
 .blog__large__widget ul li:after {
@@ -2095,6 +2099,8 @@ section.container {
 	-webkit-box-shadow: 0px 3px 10px rgba(22, 41, 124, 0.1);
 	box-shadow: 0px 3px 10px rgba(22, 41, 124, 0.1);
 	margin-bottom: 50px;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .blog__item__pic img {
@@ -2103,7 +2109,8 @@ section.container {
 
 .blog__item__text {
 	text-align: center;
-	background: #ffffff;
+	background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
 	padding: 20px 20px 25px;
 }
 
@@ -2114,7 +2121,7 @@ section.container {
 }
 
 .blog__item__text h5 {
-	color: #111111;
+	color: #ffffff;
 	font-weight: 700;
 	line-height: 26px;
 	font-size: 20px;
@@ -2132,7 +2139,7 @@ section.container {
 }
 
 .blog__item__text ul li span {
-	color: #111111;
+	color: #ffffff;
 }
 
 .blog__item__text ul li:after {
@@ -2166,11 +2173,13 @@ section.container {
 .blog__sidebar__item form input {
 	height: 50px;
 	font-size: 15px;
-	color: #444444;
+	color: white !important;
 	padding-left: 20px;
-	border: 1px solid #e1e1e1;
+	border: 1px solid rgba(255, 255, 255, .08);
 	width: 100%;
 	margin-bottom: 20px;
+	background: rgba(22, 24, 35, .9) !important;
+    border-radius: 12px;
 }
 
 .blog__sidebar__item form input::-webkit-input-placeholder {
@@ -2193,13 +2202,17 @@ section.container {
 	color: #444444;
 }
 
+.blog__sidebar__item form button {
+	border-radius: 12px;
+}
+
 .blog__sidebar__title {
 	text-align: center;
 	margin-bottom: 35px;
 }
 
 .blog__sidebar__title h4 {
-	color: #111111;
+	color: #ffffff;
 	font-weight: 700;
 	position: relative;
 	padding-bottom: 20px;
@@ -2252,7 +2265,7 @@ section.container {
 }
 
 .recent__item__text h6 {
-	color: #111111;
+	color: #ffffff;
 	line-height: 21px;
 	font-weight: 700;
 }
@@ -2539,12 +2552,14 @@ section.container {
 .contact__form form .input__list input {
 	height: 50px;
 	font-size: 13px;
-	color: #666666;
+	color: white !important;
 	padding-left: 20px;
-	border: 1px solid #e1e1e1;
+	border: 1px solid rgba(255, 255, 255, .08);
 	width: calc(33.33% - 20px);
 	margin-bottom: 20px;
 	margin-right: 16px;
+	background: rgba(22, 24, 35, .9) !important;
+    border-radius: 12px;
 }
 
 .blog__details__form form .input__list input::-webkit-input-placeholder,
@@ -2576,13 +2591,16 @@ section.container {
 .contact__form form textarea {
 	height: 120px;
 	font-size: 13px;
-	color: #666666;
+	color: white !important;
 	padding-left: 20px;
 	padding-top: 12px;
 	border: 1px solid #e1e1e1;
 	width: 100%;
 	margin-bottom: 14px;
 	resize: none;
+	border: 1px solid rgba(255, 255, 255, .08);
+	background: rgba(22, 24, 35, .9) !important;
+    border-radius: 12px;
 }
 
 .blog__details__form form textarea::-webkit-input-placeholder,
@@ -2608,6 +2626,10 @@ section.container {
 .blog__details__form form textarea::placeholder,
 .contact__form form textarea::placeholder {
 	color: #666666;
+}
+
+.contact__form form button {
+	border-radius: 12px;
 }
 
 /*---------------------
