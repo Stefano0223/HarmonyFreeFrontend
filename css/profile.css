@@ -1,5 +1,12 @@
 /* PROFILE PAGE */
+.profile-page {
 
+    min-height:100vh;
+
+    padding:70px 20px;
+
+    font-family: sans-serif;
+}
 .profile-page {
 
     min-height:100vh;
