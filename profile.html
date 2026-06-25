@@ -112,77 +112,209 @@
     </div>
 
      <!-- PROFILE PAGE -->
-      <div></div>
+
 <section class="profile-page">
+
 
     <div class="profile-container">
 
-        <!-- LEFT -->
+
+        <!-- LEFT CARD -->
+
         <div class="profile-left">
 
+
             <div class="profile-avatar">
+
+
                 <label for="uploadAvatar">
-                    <img src="img/default-user.png" id="avatarPreview">
-                    <input type="file" id="uploadAvatar" accept="image/*">
-                    <span class="change-avatar">Change photo</span>
+
+                    <img 
+                    src="img/default-user.png"
+                    id="avatarPreview">
+
+
+                    <input 
+                    type="file"
+                    id="uploadAvatar"
+                    accept="image/*">
+
+
+                    <span class="change-avatar">
+                        <i class="fa fa-camera"></i>
+                        Change photo
+                    </span>
+
+
                 </label>
+
+
             </div>
 
-            <h2 id="profile-username" style="color:white;"></h2>
 
-            <p id="profile-firstname" style="color:white;"></p>
 
-            <p id="profile-lastname" style="color:white;"></p>
+            <h2 id="profile-username">
+                Username
+            </h2>
 
-            <p id="profile-email" style="color:white;"></p>
 
-            <button id="edit-profile-btn" class="edit-btn"><i class="fa fa-edit"></i>Edit Profile</button>
+            <p id="profile-firstname"
+               class="profile-info">
+            </p>
+
+
+            <p id="profile-lastname"
+               class="profile-info">
+            </p>
+
+
+            <p id="profile-email"
+               class="profile-info">
+            </p>
+
+
+
+            <button
+            id="edit-profile-btn"
+            class="edit-btn">
+
+                <i class="fa fa-edit"></i>
+
+                Edit Profile
+
+            </button>
+
 
         </div>
 
-        <!-- RIGHT -->
+
+
+
+
+
+        <!-- RIGHT CARD -->
+
+
         <div class="profile-right">
+
+
 
             <div class="tabs">
 
-                <button class="tab"><a href="favorites.html">❤️ Favorites</a></button>
-                <button class="tab"><a href="playlists.html">🎵 My Playlists</a></button>
-                <button class="tab">⚙️ Settings</button>
+
+                <a href="favorites.html"
+                class="tab active">
+
+                    <i class="fa fa-heart"></i>
+
+                    Favorites
+
+                </a>
+
+
+
+                <a href="playlists.html"
+                class="tab">
+
+                    <i class="fa fa-music"></i>
+
+                    My Playlists
+
+                </a>
+
+
+
+                <button class="tab">
+
+                    <i class="fa fa-gear"></i>
+
+                    Settings
+
+                </button>
+
+
 
             </div>
 
-            <!-- CONTENT -->
-            <div class="tab-content">
 
-                <div class="box">
-                <h3 style="color:white;">My Favorite Tracks</h3>
 
-                <div id="profile-favorites-container"></div>
-            </div>
+
+
+
+            <!-- FAVORITES -->
+
 
             <div class="box">
-                <h3 style="color:white;">My Playlists</h3>
 
-                <div id="profile-playlists-container"></div>
+
+                <h3>
+                    <i class="fa fa-heart"></i>
+                    My Favorite Tracks
+                </h3>
+
+
+                <div 
+                id="profile-favorites-container"
+                class="list-container">
+
+
+                    <!-- tracks -->
+
+
+                </div>
+
+
             </div>
 
+
+
+
+
+
+            <!-- PLAYLISTS -->
+
+
+            <div class="box">
+
+
+                <h3>
+
+                    <i class="fa fa-list"></i>
+
+                    My Playlists
+
+                </h3>
+
+
+
+                <div
+                id="profile-playlists-container"
+                class="list-container">
+
+
+                    <!-- playlists -->
+
+
+                </div>
+
+
+
             </div>
+
+
+
 
         </div>
 
+
+
     </div>
 
+
 </section>
-<!-- Footer Section Begin -->
-    <footer class="footer spad set-bg" data-setbg="img/footer-bg.png">
-        <div class="container">
-            <div class="row">
-                
-              
-                        
-                    </div>
-                </div>
-    </footer>
+
+</section>
+
 
     <div
     class="modal fade"
