@@ -153,6 +153,12 @@ section.container {
 	padding-bottom: 67px;
 }
 
+#createPlaylistModal .modal-title,
+#editProfileModal .modal-title {
+	color: #000;
+	font-family: sans-serif;
+}
+
 #audio-player {
     width: 100%;
 }
