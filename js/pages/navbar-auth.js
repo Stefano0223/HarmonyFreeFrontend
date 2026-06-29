@@ -3,35 +3,67 @@ import { logout } from "../auth/logout.js";
 import { apiFetch } from "../services/apiClient.js";
 import { ENV } from "../services/config.js";
 
+const loginLink =
+        document.getElementById("login-link");
+
+const logoutLink =
+    document.getElementById("logout-link");
+
+const profileLink =
+        document.getElementById("profile-link");
+
+const profileName =
+    document.getElementById("profile-name");
+
 document.addEventListener("DOMContentLoaded",  async () => {
 
     const token = localStorage.getItem("jwt");
 
-    const loginLink =
-        document.getElementById("login-link");
+    console.log(logoutLink);
 
-    const logoutLink =
-        document.getElementById("logout-link");
+    console.log("Inizializzo SlickNav");
+    console.log(document.getElementById("profile-link").style.display);
+    console.log(document.getElementById("logout-link").style.display);
+
+    // Stato iniziale
+    loginLink.style.display = "block";
+    profileLink.style.display = "none";
+    logoutLink.style.display = "none";
 
     if (isLoggedIn()) {
 
-        loginLink?.style &&
-            (loginLink.style.display = "none");
-
-        logoutLink?.style &&
-            (logoutLink.style.display = "inline-block");
+        loginLink.style.display = "none";
+        logoutLink.style.display = "block";
 
         await loadNavbarUser();
     }
 
-    logoutLink?.addEventListener("click", event => {
+    // Gestione logout desktop + mobile
+    document.addEventListener("click", event => {
+
+        const logoutButton =
+            event.target.closest(".logout-link");
+
+        if (!logoutButton) {
+            return;
+        }
+
+        console.log("click su logout");
 
         event.preventDefault();
 
         logout();
 
+        console.log("Logout eseguito");
+
         window.location.href = "auth.html";
 
+    });
+
+    // Rigenera il menu mobile
+    $(".mobile-menu").slicknav({
+        prependTo: '#mobile-menu-wrap',
+        allowParentLinks: true
     });
 
 });
@@ -49,17 +81,13 @@ async function loadNavbarUser() {
     const user =
         await response.json();
 
-    const profileLink =
-        document.getElementById("profile-link");
-
-    const profileName =
-        document.getElementById("profile-name");
+    console.log(user.username);
 
     profileName.textContent =
         user.username;
 
     profileLink.style.display =
-        "inline-block";
+        "block";
 
     profileLink.href = "profile.html";
 }
