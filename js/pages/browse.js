@@ -1,7 +1,8 @@
 import { getAllTracks, searchTracks } from "../api/track-api.js";
-import { getMyPlaylists, addTrackToPlaylist } from "../api/playlist-api.js";
 import { isLoggedIn } from "../utils/auth-utils.js";
 import { addFavorite } from "../api/favorite-api.js";
+import { addTrackToPlaylist } from "../api/playlist-api.js";
+import { loadPlaylistModal } from "./playlist-modal.js";
 
 let currentFilters = {};
 let currentOffset = 0;
@@ -307,29 +308,6 @@ document.addEventListener("click", async event => {
     playlistModal.show();
     
 });
-
-async function loadPlaylistModal() {
-
-    const playlists =
-        await getMyPlaylists();
-
-    const container =
-        document.getElementById(
-            "playlist-list"
-        );
-
-    container.innerHTML = playlists
-        .map(
-            playlist => `
-                <button
-                    class="btn btn-info w-100 mb-2 playlist-select-btn"
-                    data-playlist-id="${playlist.id}">
-                    ${playlist.title}
-                </button>
-            `
-        )
-        .join("");
-}
 
 document.addEventListener(
     "click",
